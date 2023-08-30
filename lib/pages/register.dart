@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/src/widgets/container.dart';
 // import 'package:flutter/src/widgets/framework.dart';
@@ -16,11 +17,17 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final RenterTextController = TextEditingController();
+  void signup() async {
+    await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: emailTextController.text,
+      password: passwordTextController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.orange,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -42,6 +49,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(
@@ -79,7 +87,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 //Signin Button
                 MyButton(
-                  onTap: () {},
+                  onTap: signup,
                   text: 'Sign Up',
                 ),
                 const SizedBox(
@@ -88,7 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 //register page
                 Text("-OR-",
                     style: TextStyle(
-                      color: Colors.grey[700],
+                      color: Colors.white,
                       fontWeight: FontWeight.w500,
                     )),
                 const SizedBox(
@@ -96,7 +104,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 Text("Create Account with",
                     style: TextStyle(
-                      color: Colors.grey[700],
+                      color: Colors.white,
                       fontWeight: FontWeight.w500,
                     )),
                 const SizedBox(
@@ -109,7 +117,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     width: 60,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.black,
+                      color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black,
@@ -131,7 +139,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Text("Already have an account?",
                         style: TextStyle(
-                          color: Colors.grey[700],
+                          color: Colors.white,
                           fontWeight: FontWeight.w500,
                         )),
                     const SizedBox(
@@ -142,7 +150,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: const Text(
                         "Sign In",
                         style: TextStyle(
-                            color: Colors.blue, fontWeight: FontWeight.w700),
+                            color: Colors.black, fontWeight: FontWeight.w700),
                       ),
                     ),
                   ],

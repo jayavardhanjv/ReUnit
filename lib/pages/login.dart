@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/src/widgets/container.dart';
 // import 'package:flutter/src/widgets/framework.dart';
@@ -10,7 +11,6 @@ class LoginPage extends StatefulWidget {
     super.key,
     required this.onTap,
   });
-
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
@@ -18,11 +18,17 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  void signin() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+      email: emailTextController.text,
+      password: passwordTextController.text,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: Colors.orange[500],
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -31,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //icons or image
-                  Icon(
+                  const Icon(
                     Icons.lock_outline_rounded,
                     size: 100,
                   ),
@@ -39,9 +45,10 @@ class _LoginPageState extends State<LoginPage> {
                     height: 30,
                   ),
                   //welcome message
-                  Text(
+                  const Text(
                     "Welcome Back, We Missed You!",
                     style: TextStyle(
+                      color: Colors.white,
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),
@@ -71,24 +78,24 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   //Signin Button
                   MyButton(
-                    onTap: () {},
+                    onTap: signin,
                     text: 'Sign In',
                   ),
 
                   const SizedBox(
                     height: 30,
                   ),
-                  Text("-OR-",
+                  const Text("-OR-",
                       style: TextStyle(
-                        color: Colors.grey[700],
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                       )),
                   const SizedBox(
                     height: 20,
                   ),
-                  Text("Sign in with",
+                  const Text("Sign in with",
                       style: TextStyle(
-                        color: Colors.grey[700],
+                        color: Colors.white,
                         fontWeight: FontWeight.w500,
                       )),
                   const SizedBox(
@@ -101,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: 60,
                       decoration: const BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.black,
+                        color: Colors.white,
                         boxShadow: [
                           BoxShadow(
                             color: Colors.black,
@@ -123,9 +130,9 @@ class _LoginPageState extends State<LoginPage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text("Don't have an account?",
+                      const Text("Don't have an account?",
                           style: TextStyle(
-                            color: Colors.grey[700],
+                            color: Colors.white,
                             fontWeight: FontWeight.w500,
                           )),
                       const SizedBox(
@@ -136,7 +143,10 @@ class _LoginPageState extends State<LoginPage> {
                         child: const Text(
                           "Register Now",
                           style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.w700),
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 17,
+                          ),
                         ),
                       ),
                     ],
