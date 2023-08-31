@@ -17,12 +17,12 @@ class MyButton extends StatelessWidget {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.black,
+              color: Colors.orange,
               offset: Offset(0, 2),
               blurRadius: 8,
             )
           ],
-          color: Colors.black,
+          color: Colors.orange,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(

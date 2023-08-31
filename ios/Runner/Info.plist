@@ -48,6 +48,19 @@
 		<key>UIApplicationSupportsIndirectInputEvents</key>
 		<true/>
 		<key>UIStatusBarHidden</key>
+		<key>CFBundleURLTypes</key>
+		<array>
+		<dict>
+		<key>CFBundleTypeRole</key>
+		<string>Editor</string>
+		<key>CFBundleURLSchemes</key>
+		<array>
+			<!-- TODO Replace this value: -->
+			<!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
+			<string>com.googleusercontent.apps.576759230416-r21svvd882kc7tth8fd961ceabevnm41</string>
+		</array>
+		</dict>
+		</array>
 		<false/>
 	</dict>
 </plist>

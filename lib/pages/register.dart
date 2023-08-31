@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
 
+import '../auth/auth_google.dart';
+
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
   const RegisterPage({super.key, required this.onTap});
@@ -27,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange,
+      backgroundColor: Color.fromRGBO(95, 157, 247, 1),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -111,7 +113,9 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 30,
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    AuthGoogle().SigninWithGoogle();
+                  },
                   child: Container(
                     height: 60,
                     width: 60,
@@ -147,10 +151,11 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                     GestureDetector(
                       onTap: widget.onTap,
-                      child: const Text(
+                      child: Text(
                         "Sign In",
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.w700),
+                            color: Colors.blue[900],
+                            fontWeight: FontWeight.w700),
                       ),
                     ),
                   ],

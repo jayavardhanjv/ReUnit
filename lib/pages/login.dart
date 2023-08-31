@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gaming_accessories_rent_app/auth/auth_google.dart';
 // import 'package:flutter/src/widgets/container.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
@@ -28,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.orange[500],
+      backgroundColor: Color.fromRGBO(95, 157, 247, 1),
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -63,6 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: false,
                     enableSuggestions: true,
                   ),
+
                   const SizedBox(
                     height: 10,
                   ),
@@ -72,6 +74,17 @@ class _LoginPageState extends State<LoginPage> {
                     hintText: "Enter the Password",
                     obscureText: true,
                     enableSuggestions: false,
+                  ),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {},
+                      child: Text(
+                        "Forgot Password?",
+                        style: TextStyle(
+                            color: Colors.white, fontWeight: FontWeight.bold),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: 10,
@@ -85,15 +98,7 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  const Text("-OR-",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      )),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  const Text("Sign in with",
+                  const Text("Or Sign in with",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w500,
@@ -102,7 +107,9 @@ class _LoginPageState extends State<LoginPage> {
                     height: 30,
                   ),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      AuthGoogle().SigninWithGoogle();
+                    },
                     child: Container(
                       height: 60,
                       width: 60,
@@ -140,12 +147,12 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       GestureDetector(
                         onTap: widget.onTap,
-                        child: const Text(
+                        child: Text(
                           "Register Now",
                           style: TextStyle(
-                            color: Colors.black,
+                            color: Colors.blue[900],
                             fontWeight: FontWeight.bold,
-                            fontSize: 17,
+                            fontSize: 14,
                           ),
                         ),
                       ),
