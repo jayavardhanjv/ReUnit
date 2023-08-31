@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/auth/Login_or_register.dart';
+import 'package:gaming_accessories_rent_app/pages/mainPage.dart';
 
-import '../pages/home.dart';
+// import '../pages/home.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -13,7 +14,7 @@ class AuthPage extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
-          return const HomePage();
+          return const MainPage();
         } else {
           return const Login_or_Register();
         }

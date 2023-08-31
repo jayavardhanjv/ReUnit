@@ -15,14 +15,14 @@ class MyButton extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(25),
         decoration: BoxDecoration(
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
-              color: Colors.orange,
+              color: Color.fromRGBO(255, 93, 78, 1),
               offset: Offset(0, 2),
               blurRadius: 8,
             )
           ],
-          color: Colors.orange,
+          color: Color.fromRGBO(255, 93, 78, 1),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(

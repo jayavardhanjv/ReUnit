@@ -29,7 +29,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(95, 157, 247, 1),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -49,7 +49,7 @@ class _LoginPageState extends State<LoginPage> {
                   const Text(
                     "Welcome Back, We Missed You!",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontSize: 16,
                       fontWeight: FontWeight.w400,
                     ),
@@ -82,7 +82,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Text(
                         "Forgot Password?",
                         style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
+                            color: Colors.black, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const Text("Or Sign in with",
                       style: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w500,
                       )),
                   const SizedBox(
@@ -139,7 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                     children: [
                       const Text("Don't have an account?",
                           style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.black,
                             fontWeight: FontWeight.w500,
                           )),
                       const SizedBox(
@@ -150,7 +150,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: Text(
                           "Register Now",
                           style: TextStyle(
-                            color: Colors.blue[900],
+                            color: Color.fromRGBO(255, 93, 78, 1),
                             fontWeight: FontWeight.bold,
                             fontSize: 14,
                           ),

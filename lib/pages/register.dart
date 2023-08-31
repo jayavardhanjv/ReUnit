@@ -29,7 +29,7 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(95, 157, 247, 1),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: Padding(
@@ -51,7 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
                 const SizedBox(
@@ -98,7 +98,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 //register page
                 Text("-OR-",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.w500,
                     )),
                 const SizedBox(
@@ -106,7 +106,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 Text("Create Account with",
                     style: TextStyle(
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.w500,
                     )),
                 const SizedBox(
@@ -143,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Text("Already have an account?",
                         style: TextStyle(
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.w500,
                         )),
                     const SizedBox(
@@ -154,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       child: Text(
                         "Sign In",
                         style: TextStyle(
-                            color: Colors.blue[900],
+                            color: Color.fromRGBO(255, 93, 78, 1),
                             fontWeight: FontWeight.w700),
                       ),
                     ),

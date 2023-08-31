@@ -6,7 +6,7 @@ import 'package:gaming_accessories_rent_app/firebase_options.dart';
 import 'auth/auth.dart';
 import 'pages/login.dart';
 import 'pages/register.dart';
-import 'pages/test.dart';
+// import 'pages/test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
