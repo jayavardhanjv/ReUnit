@@ -1,10 +1,16 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/auth/auth_google.dart';
 // import 'package:flutter/src/widgets/container.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
+import 'package:gaming_accessories_rent_app/pages/fogot_password.dart';
+
+import '../components/show_error_dialog.dart';
+
+// import '../components/showbox.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -20,10 +26,62 @@ class _LoginPageState extends State<LoginPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   void signin() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: emailTextController.text,
-      password: passwordTextController.text,
-    );
+    try {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailTextController.text,
+        password: passwordTextController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'network-request-failed') {
+        showError(
+          context,
+          'No Internet Connection',
+        );
+
+        //devtools.log('No Internet Connection');
+      } else if (e.code == "wrong-password") {
+        // return showErrorDialog(context, 'Please Enter correct password');
+        //devtools.log('Please Enter correct password');
+        showError(
+          context,
+          'Please Enter correct password',
+        );
+        //print('Please Enter correct password');
+      } else if (e.code == 'user-not-found') {
+        // showErrorDialog(context, 'Email not found');
+        showError(
+          context,
+          'Email not found',
+        );
+        // print('Email not found');
+      } else if (e.code == 'too-many-requests') {
+        // return showErrorDialog(context, 'Too many attempts please try later');
+        showError(
+          context,
+          'Too many attempts please try later',
+        );
+        //print('Too many attempts please try later');
+      } else if (e.code == 'unknwon') {
+        // showErrorDialog(context, 'Email and password field are required');
+        showError(
+          context,
+          'Email and password field are required',
+        );
+        //print('Email and password field are required');
+      } else if (e.code == 'unknown') {
+        // showErrorDialog(context, 'Email and Password Fields are required');
+        showError(
+          context,
+          'Email and Password Fields are required',
+        );
+        //print(e.code);
+      } else {
+        showError(
+          context,
+          'Some error in login',
+        );
+      }
+    }
   }
 
   @override
@@ -78,7 +136,13 @@ class _LoginPageState extends State<LoginPage> {
                   Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          CupertinoPageRoute(
+                              builder: (context) => const ForgotPasswordPage()),
+                        );
+                      },
                       child: const Text(
                         "Forgot Password?",
                         style: TextStyle(
@@ -163,6 +227,35 @@ class _LoginPageState extends State<LoginPage> {
               )),
         ),
       ),
+    );
+  }
+}
+
+class DialogExample extends StatelessWidget {
+  const DialogExample(
+      {super.key, required String text, required String content});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('AlertDialog Title'),
+          content: const Text('AlertDialog description'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'OK'),
+              child: const Text('OK'),
+            ),
+          ],
+        ),
+      ),
+      child: const Text('Show Dialog'),
     );
   }
 }

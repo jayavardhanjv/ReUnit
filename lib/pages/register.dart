@@ -6,6 +6,7 @@ import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
 
 import '../auth/auth_google.dart';
+import '../components/show_error_dialog.dart';
 
 class RegisterPage extends StatefulWidget {
   final Function()? onTap;
@@ -20,10 +21,27 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordTextController = TextEditingController();
   final RenterTextController = TextEditingController();
   void signup() async {
-    await FirebaseAuth.instance.createUserWithEmailAndPassword(
-      email: emailTextController.text,
-      password: passwordTextController.text,
-    );
+    try {
+      final credential =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: emailTextController.text,
+        password: passwordTextController.text,
+      );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        // print('The password provided is too weak.');
+        showError(
+          context,
+          'The password provided is too weak.',
+        );
+      } else if (e.code == 'email-already-in-use') {
+        showError(context, 'The account already exists for that email.');
+      } else {
+        showError(context, 'some error in registration');
+      }
+    } catch (e) {
+      print(e);
+    }
   }
 
   @override

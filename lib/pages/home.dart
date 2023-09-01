@@ -1,9 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 // import 'package:gaming_accessories_rent_app/components/bottom_nav.dart';
 // import 'package:gaming_accessories_rent_app/auth/Login_or_register.dart';
 import 'package:gaming_accessories_rent_app/components/nav.dart';
+import 'package:gaming_accessories_rent_app/pages/found_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'notification_page.dart';
 
 // import '../components/bottom_nav.dart';
 
@@ -48,7 +52,11 @@ class _HomePageState extends State<HomePage> {
                 Expanded(child: Container()),
                 GestureDetector(
                   onTap: () {
-                    print("Ayayyo phone bantu");
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => const NotificationPage()),
+                    );
                   },
                   child: Container(
                     margin: EdgeInsets.only(right: 20),
@@ -94,9 +102,7 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    print("i lost my v");
-                  },
+                  onTap: () {},
                   child: Container(
                     width: 180,
                     height: 200,
@@ -116,7 +122,7 @@ class _HomePageState extends State<HomePage> {
                             height: 140,
                           ),
                           const Text(
-                            "Lost Item",
+                            "Lost Items",
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               color: Colors.black,
@@ -154,7 +160,7 @@ class _HomePageState extends State<HomePage> {
                             height: 160,
                           ),
                           const Text(
-                            "Found Item",
+                            "Found Items",
                             style: TextStyle(
                               fontFamily: 'Poppins',
                               color: Colors.black,
