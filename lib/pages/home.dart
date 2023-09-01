@@ -7,6 +7,8 @@ import 'package:gaming_accessories_rent_app/components/nav.dart';
 import 'package:gaming_accessories_rent_app/pages/found_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'internal pages/report_found.dart';
+import 'internal pages/report_lost.dart';
 import 'notification_page.dart';
 
 // import '../components/bottom_nav.dart';
@@ -226,96 +228,132 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(right: 5),
-                  child: Column(
-                    children: [
-                      SafeArea(
-                        child: Center(
-                          child: Container(
-                            height: 90,
-                            width: 370,
-                            decoration: BoxDecoration(
-                              gradient: LinearGradient(
-                                  begin: Alignment.bottomLeft,
-                                  end: Alignment.topRight,
-                                  colors: [
-                                    Colors.blue.shade600,
-                                    Colors.blue.shade200,
-                                  ]),
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: Image.asset(
-                                            "assets/icons/found.png")),
-                                    Container(
-                                      padding: EdgeInsets.only(left: 40),
-                                      child: const Text(
-                                        "Found an Item",
-                                        style: TextStyle(
-                                          fontFamily: "Poppins",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 24,
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => const Report_Found()),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.only(right: 5),
+                    child: Column(
+                      children: [
+                        SafeArea(
+                          child: Center(
+                            child: Container(
+                              height: 90,
+                              width: 370,
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: Alignment.bottomLeft,
+                                    end: Alignment.topRight,
+                                    colors: [
+                                      Colors.blue.shade600,
+                                      Colors.blue.shade200,
+                                    ]),
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Center(
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                          padding: EdgeInsets.only(left: 10),
+                                          child: Image.asset(
+                                              "assets/icons/found.png")),
+                                      Container(
+                                        padding:
+                                            const EdgeInsets.only(left: 40),
+                                        child: Text(
+                                          "Found an Item",
+                                          style: TextStyle(
+                                            color: Colors.grey[900],
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 24,
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                      Container(
+                                          padding: EdgeInsets.only(left: 20),
+                                          child: Image.asset(
+                                            "assets/icons/right-arrow.png",
+                                            color: Colors.grey[900],
+                                            scale: 20,
+                                          )),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      SafeArea(
-                        child: Center(
-                          child: Container(
-                            height: 90,
-                            width: 370,
-                            decoration: BoxDecoration(
-                              // color: Colors.pink[200],
-                              borderRadius: BorderRadius.circular(20),
-                              gradient: LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Colors.purple.shade300,
-                                    Colors.purple.shade100,
-                                  ]),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Center(
-                                child: Row(
-                                  children: [
-                                    Container(
-                                        padding: EdgeInsets.only(left: 20),
-                                        child: Image.asset(
-                                            "assets/icons/lost.png")),
-                                    Container(
-                                      padding: EdgeInsets.only(left: 30),
-                                      child: const Text(
-                                        "Lost an Item",
-                                        style: TextStyle(
-                                          fontFamily: "Poppins",
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 24,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute<void>(
+                                builder: (BuildContext context) =>
+                                    const Report_Lost(),
+                              ),
+                            );
+                          },
+                          child: SafeArea(
+                            child: Center(
+                              child: Container(
+                                height: 90,
+                                width: 370,
+                                decoration: BoxDecoration(
+                                  // color: Colors.pink[200],
+                                  borderRadius: BorderRadius.circular(20),
+                                  gradient: LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Colors.purple.shade300,
+                                        Colors.purple.shade100,
+                                      ]),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Center(
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                            padding: EdgeInsets.only(left: 25),
+                                            child: Image.asset(
+                                                "assets/icons/lost.png")),
+                                        Container(
+                                          padding: EdgeInsets.only(left: 30),
+                                          child: Text(
+                                            "Lost an Item",
+                                            style: TextStyle(
+                                              color: Colors.grey[900],
+                                              fontFamily: "Poppins",
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: 24,
+                                            ),
+                                          ),
                                         ),
-                                      ),
+                                        Container(
+                                            padding: EdgeInsets.only(left: 40),
+                                            child: Image.asset(
+                                                "assets/icons/right-arrow.png",
+                                                scale: 20,
+                                                color: Colors.grey[900])),
+                                      ],
                                     ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 )
               ],
