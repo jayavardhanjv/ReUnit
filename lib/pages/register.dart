@@ -96,15 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   height: 30,
                 ),
                 //register page
-                Text("-OR-",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500,
-                    )),
-                const SizedBox(
-                  height: 20,
-                ),
-                Text("Create Account with",
+                const Text("Or Create Account with",
                     style: TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.w500,

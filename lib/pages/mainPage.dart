@@ -35,6 +35,7 @@ class _MainPageState extends State<MainPage> {
         showSelectedLabels: false,
         showUnselectedLabels: false,
         currentIndex: currentindex,
+        backgroundColor: Colors.transparent,
         selectedItemColor: Colors.black54,
         items: const [
           BottomNavigationBarItem(

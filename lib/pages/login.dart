@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
       body: SafeArea(
         child: Center(
           child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -79,10 +79,11 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {},
-                      child: Text(
+                      child: const Text(
                         "Forgot Password?",
                         style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
+                            color: Color.fromRGBO(255, 93, 78, 1),
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -147,7 +148,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       GestureDetector(
                         onTap: widget.onTap,
-                        child: Text(
+                        child: const Text(
                           "Register Now",
                           style: TextStyle(
                             color: Color.fromRGBO(255, 93, 78, 1),

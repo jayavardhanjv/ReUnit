@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
     // return Login_or_Register();
   }
 
+  final useremail = FirebaseAuth.instance.currentUser!.email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,13 +46,25 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 Expanded(child: Container()),
-                Container(
-                  margin: EdgeInsets.only(right: 20),
-                  width: 50,
-                  height: 50,
-                  decoration: BoxDecoration(
-                      color: Colors.grey.withOpacity(0.5),
-                      borderRadius: BorderRadius.circular(10)),
+                GestureDetector(
+                  onTap: () {
+                    print("Ayayyo phone bantu");
+                  },
+                  child: Container(
+                    margin: EdgeInsets.only(right: 20),
+                    width: 50,
+                    height: 50,
+                    decoration: BoxDecoration(
+                        // color: Colors.grey.withOpacity(0.5),
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Image.asset(
+                      "assets/icons/notification.png",
+                      // height: 5,
+                      // width: 5,
+                      scale: 14,
+                      // color: Colors.black87,
+                    ),
+                  ),
                 ),
               ],
             ),
@@ -155,6 +168,150 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
+              ],
+            ),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Container(
+            height: 360,
+            width: 420,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(30),
+              color: Colors.grey.shade200,
+            ),
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 30,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const Text(
+                      "Report",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Colors.black,
+                        fontSize: 28,
+                        fontWeight: FontWeight.normal,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: const EdgeInsets.only(left: 20),
+                    child: const Text(
+                      "select which one you want to report.",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        // shadows:,
+                        color: Colors.black,
+                        fontSize: 13,
+                        fontWeight: FontWeight.w200,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.only(right: 5),
+                  child: Column(
+                    children: [
+                      SafeArea(
+                        child: Center(
+                          child: Container(
+                            height: 90,
+                            width: 370,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: Alignment.bottomLeft,
+                                  end: Alignment.topRight,
+                                  colors: [
+                                    Colors.blue.shade600,
+                                    Colors.blue.shade200,
+                                  ]),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                        padding: EdgeInsets.only(left: 10),
+                                        child: Image.asset(
+                                            "assets/icons/found.png")),
+                                    Container(
+                                      padding: EdgeInsets.only(left: 40),
+                                      child: const Text(
+                                        "Found an Item",
+                                        style: TextStyle(
+                                          fontFamily: "Poppins",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 24,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SafeArea(
+                        child: Center(
+                          child: Container(
+                            height: 90,
+                            width: 370,
+                            decoration: BoxDecoration(
+                              // color: Colors.pink[200],
+                              borderRadius: BorderRadius.circular(20),
+                              gradient: LinearGradient(
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                  colors: [
+                                    Colors.purple.shade300,
+                                    Colors.purple.shade100,
+                                  ]),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Row(
+                                  children: [
+                                    Container(
+                                        padding: EdgeInsets.only(left: 20),
+                                        child: Image.asset(
+                                            "assets/icons/lost.png")),
+                                    Container(
+                                      padding: EdgeInsets.only(left: 30),
+                                      child: const Text(
+                                        "Lost an Item",
+                                        style: TextStyle(
+                                          fontFamily: "Poppins",
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 24,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
               ],
             ),
           )
