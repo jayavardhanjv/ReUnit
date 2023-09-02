@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 // import 'package:gaming_accessories_rent_app/auth/Login_or_register.dart';
 import 'package:gaming_accessories_rent_app/components/nav.dart';
 import 'package:gaming_accessories_rent_app/pages/found_page.dart';
+import 'package:gaming_accessories_rent_app/pages/lost_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'internal pages/report_found.dart';
@@ -104,7 +105,14 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (context) => const LostPage(),
+                      ),
+                    );
+                  },
                   child: Container(
                     width: 180,
                     height: 200,
@@ -142,7 +150,11 @@ class _HomePageState extends State<HomePage> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print("ilost my d");
+                    Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                          builder: (context) => const FoundPage()),
+                    );
                   },
                   child: Container(
                     width: 180,
