@@ -7,7 +7,7 @@ class MyTextField extends StatelessWidget {
     required this.hintText,
     required this.obscureText,
     required this.enableSuggestions,
-    // required this.type,
+    required this.Myicon,
   });
 
   final TextEditingController controller;
@@ -16,7 +16,7 @@ class MyTextField extends StatelessWidget {
 
   final bool obscureText;
   final bool enableSuggestions;
-  // final bool type;
+  final IconData Myicon;
 
   @override
   Widget build(BuildContext context) {
@@ -25,6 +25,7 @@ class MyTextField extends StatelessWidget {
     // var kype;
     return TextField(
       // keyboardType: TextInputType.kyp,
+      cursorColor: Colors.red[300],
       controller: controller,
       obscureText: obscureText,
       enableSuggestions: enableSuggestions,
@@ -42,6 +43,9 @@ class MyTextField extends StatelessWidget {
           ),
           fillColor: Colors.grey.shade100,
           filled: true,
+          focusColor: Colors.red[300],
+          suffixIcon: Icon(Myicon as IconData?),
+          suffixIconColor: Colors.grey,
           hintStyle: TextStyle(
             color: Colors.grey[500],
           )),

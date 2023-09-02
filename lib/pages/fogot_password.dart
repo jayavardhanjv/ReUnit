@@ -69,9 +69,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //icons or image
-                  const Icon(
-                    Icons.mail_outline_outlined,
-                    size: 100,
+                  Image.asset(
+                    "assets/images/Forgot password-pana.png",
                   ),
                   const SizedBox(
                     height: 30,
@@ -94,6 +93,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     hintText: "Enter the  Email",
                     obscureText: false,
                     enableSuggestions: true,
+                    Myicon: Icons.mail_outline_outlined,
                   ),
 
                   const SizedBox(

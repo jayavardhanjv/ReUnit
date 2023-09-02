@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/pages/found_page.dart';
 import 'package:gaming_accessories_rent_app/pages/home.dart';
@@ -7,6 +8,9 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
+  void logout() {
+    FirebaseAuth.instance.signOut();
+  }
 
   @override
   State<MainPage> createState() => _MainPageState();

@@ -92,138 +92,143 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //icons or image
-                  const Icon(
-                    Icons.lock_outline_rounded,
-                    size: 100,
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  //welcome message
-                  const Text(
-                    "Welcome Back, We Missed You!",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //icons or image
+                    Image.asset(
+                      "assets/images/Computer login-pana.png",
+                      scale: 10,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  //email field
-                  MyTextField(
-                    controller: emailTextController,
-                    hintText: "Enter the  Email",
-                    obscureText: false,
-                    enableSuggestions: true,
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  //password field
-                  MyTextField(
-                    controller: passwordTextController,
-                    hintText: "Enter the Password",
-                    obscureText: true,
-                    enableSuggestions: false,
-                  ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          CupertinoPageRoute(
-                              builder: (context) => const ForgotPasswordPage()),
-                        );
-                      },
-                      child: const Text(
-                        "Forgot Password?",
-                        style: TextStyle(
-                            color: Color.fromRGBO(255, 93, 78, 1),
-                            fontWeight: FontWeight.bold),
-                      ),
+                    const SizedBox(
+                      height: 30,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  //Signin Button
-                  MyButton(
-                    onTap: signin,
-                    text: 'Sign In',
-                  ),
-
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  const Text("Or Sign in with",
+                    //welcome message
+                    const Text(
+                      "Welcome Back, We Missed You!",
                       style: TextStyle(
                         color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                      )),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      AuthGoogle().SigninWithGoogle();
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 60,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Colors.white,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black,
-                            offset: Offset(0, 2),
-                            blurRadius: 6,
-                          )
-                        ],
-                        image: DecorationImage(
-                          image: AssetImage("assets/google.png"),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    //email field
+                    MyTextField(
+                      controller: emailTextController,
+                      hintText: "Enter the  Email",
+                      obscureText: false,
+                      enableSuggestions: true,
+                      Myicon: Icons.mail_outline,
+                    ),
+
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    //password field
+                    MyTextField(
+                      controller: passwordTextController,
+                      hintText: "Enter the Password",
+                      obscureText: true,
+                      enableSuggestions: false,
+                      Myicon: Icons.remove_red_eye_outlined,
+                    ),
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) =>
+                                    const ForgotPasswordPage()),
+                          );
+                        },
+                        child: const Text(
+                          "Forgot Password?",
+                          style: TextStyle(
+                              color: Color.fromRGBO(255, 93, 78, 1),
+                              fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  //register page
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    //Signin Button
+                    MyButton(
+                      onTap: signin,
+                      text: 'Sign In',
+                    ),
 
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text("Don't have an account?",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                          )),
-                      const SizedBox(
-                        width: 4,
-                      ),
-                      GestureDetector(
-                        onTap: widget.onTap,
-                        child: const Text(
-                          "Register Now",
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 93, 78, 1),
-                            fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    const Text("Or Sign in with",
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.w500,
+                        )),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        AuthGoogle().SigninWithGoogle();
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 60,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black,
+                              offset: Offset(0, 2),
+                              blurRadius: 6,
+                            )
+                          ],
+                          image: DecorationImage(
+                            image: AssetImage("assets/google.png"),
                           ),
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    //register page
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text("Don't have an account?",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                            )),
+                        const SizedBox(
+                          width: 4,
+                        ),
+                        GestureDetector(
+                          onTap: widget.onTap,
+                          child: const Text(
+                            "Register Now",
+                            style: TextStyle(
+                              color: Color.fromRGBO(255, 93, 78, 1),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               )),
         ),
       ),
