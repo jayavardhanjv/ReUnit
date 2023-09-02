@@ -99,7 +99,7 @@ class _LoginPageState extends State<LoginPage> {
                     //icons or image
                     Image.asset(
                       "assets/images/Computer login-pana.png",
-                      scale: 10,
+                      scale: 8,
                     ),
                     const SizedBox(
                       height: 30,
@@ -114,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     const SizedBox(
-                      height: 50,
+                      height: 30,
                     ),
                     //email field
                     MyTextField(
@@ -123,6 +123,7 @@ class _LoginPageState extends State<LoginPage> {
                       obscureText: false,
                       enableSuggestions: true,
                       Myicon: Icons.mail_outline,
+                      Mykeybord: TextInputType.emailAddress,
                     ),
 
                     const SizedBox(
@@ -135,6 +136,7 @@ class _LoginPageState extends State<LoginPage> {
                       obscureText: true,
                       enableSuggestions: false,
                       Myicon: Icons.remove_red_eye_outlined,
+                      Mykeybord: TextInputType.visiblePassword,
                     ),
                     Align(
                       alignment: Alignment.centerRight,

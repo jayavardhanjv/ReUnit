@@ -94,6 +94,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     obscureText: false,
                     enableSuggestions: true,
                     Myicon: Icons.mail_outline_outlined,
+                    Mykeybord: TextInputType.emailAddress,
                   ),
 
                   const SizedBox(

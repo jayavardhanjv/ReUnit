@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/src/widgets/container.dart';
@@ -17,9 +18,12 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  FirebaseFirestore db = FirebaseFirestore.instance;
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   final RenterTextController = TextEditingController();
+  final UserNameTextController = TextEditingController();
+  final PhoneTextController = TextEditingController();
   void signup() async {
     try {
       final credential =
@@ -59,10 +63,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   //icons or image
                   Image.asset(
                     "assets/images/Sign up-pana.png",
-                    scale: 10,
+                    scale: 12,
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 15,
                   ),
                   //welcome message
                   const Text(
@@ -74,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 50,
+                    height: 20,
                   ),
                   //email field
                   MyTextField(
@@ -83,6 +87,29 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscureText: false,
                     enableSuggestions: true,
                     Myicon: Icons.mail_outline,
+                    Mykeybord: TextInputType.emailAddress,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  MyTextField(
+                    controller: UserNameTextController,
+                    hintText: "Enter the User Name",
+                    obscureText: false,
+                    enableSuggestions: true,
+                    Myicon: Icons.person_2_outlined,
+                    Mykeybord: TextInputType.name,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  MyTextField(
+                    controller: PhoneTextController,
+                    hintText: "Enter the Phone Number",
+                    obscureText: false,
+                    enableSuggestions: true,
+                    Myicon: Icons.phone_android_outlined,
+                    Mykeybord: TextInputType.number,
                   ),
                   const SizedBox(
                     height: 10,
@@ -94,20 +121,21 @@ class _RegisterPageState extends State<RegisterPage> {
                     obscureText: true,
                     enableSuggestions: false,
                     Myicon: Icons.remove_red_eye_outlined,
+                    Mykeybord: TextInputType.visiblePassword,
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  // const SizedBox(
+                  //   height: 10,
+                  // ),
                   //Password re enter
-                  MyTextField(
-                    controller: RenterTextController,
-                    hintText: "Re-Enter Password",
-                    obscureText: true,
-                    enableSuggestions: false,
-                    Myicon: Icons.remove_red_eye_outlined,
-                  ),
+                  // MyTextField(
+                  //   controller: RenterTextController,
+                  //   hintText: "Re-Enter Password",
+                  //   obscureText: true,
+                  //   enableSuggestions: false,
+                  //   Myicon: Icons.remove_red_eye_outlined,
+                  // ),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
                   //Signin Button
                   MyButton(
@@ -115,7 +143,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     text: 'Sign Up',
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   //register page
                   const Text("Or Create Account with",
@@ -124,7 +152,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         fontWeight: FontWeight.w500,
                       )),
                   const SizedBox(
-                    height: 30,
+                    height: 20,
                   ),
                   GestureDetector(
                     onTap: () {
@@ -150,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 30,
+                    height: 10,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -171,6 +199,9 @@ class _RegisterPageState extends State<RegisterPage> {
                               color: Color.fromRGBO(255, 93, 78, 1),
                               fontWeight: FontWeight.w700),
                         ),
+                      ),
+                      const SizedBox(
+                        height: 30,
                       ),
                     ],
                   ),

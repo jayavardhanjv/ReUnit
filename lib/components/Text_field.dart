@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 
 class MyTextField extends StatelessWidget {
   const MyTextField({
@@ -8,6 +9,7 @@ class MyTextField extends StatelessWidget {
     required this.obscureText,
     required this.enableSuggestions,
     required this.Myicon,
+    required this.Mykeybord,
   });
 
   final TextEditingController controller;
@@ -17,14 +19,16 @@ class MyTextField extends StatelessWidget {
   final bool obscureText;
   final bool enableSuggestions;
   final IconData Myicon;
+  final TextInputType Mykeybord;
 
   @override
   Widget build(BuildContext context) {
     // var kype;
     // kype = type;
     // var kype;
-    return TextField(
-      // keyboardType: TextInputType.kyp,
+    return TextFormField(
+      keyboardType: Mykeybord,
+      validator: RequiredValidator(errorText: "Required..*"),
       cursorColor: Colors.red[300],
       controller: controller,
       obscureText: obscureText,
