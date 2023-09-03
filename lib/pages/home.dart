@@ -8,6 +8,7 @@ import 'package:gaming_accessories_rent_app/pages/found_page.dart';
 import 'package:gaming_accessories_rent_app/pages/lost_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../components/drawer.dart';
 import 'internal pages/report_found.dart';
 import 'internal pages/report_lost.dart';
 import 'notification_page.dart';
@@ -15,8 +16,8 @@ import 'notification_page.dart';
 // import '../components/bottom_nav.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
+  HomePage({super.key});
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   State<HomePage> createState() => _HomePageState();
 }
@@ -27,10 +28,13 @@ class _HomePageState extends State<HomePage> {
     // return Login_or_Register();
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final useremail = FirebaseAuth.instance.currentUser!.email;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
+      drawer: Mydrawer(),
       body: Column(
         children: [
           Container(
@@ -44,7 +48,9 @@ class _HomePageState extends State<HomePage> {
                 // ),
                 GestureDetector(
                   onTap: () {
-                    logout();
+                    // logout();
+                    // Mydrawer();
+                    _scaffoldKey.currentState?.openDrawer();
                   },
                   child: Image.asset(
                     "assets/icons/menu.png",
