@@ -1,4 +1,6 @@
 // import 'package:flutter/cupertino.dart';
+// import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 Future<void> showConfirm(
@@ -9,8 +11,8 @@ Future<void> showConfirm(
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text("an error occered"),
-          content: Text(text),
+          title: const Text("Do You want to Logout?"),
+          // content: Text(text),
           actions: [
             MaterialButton(
               onPressed: () {

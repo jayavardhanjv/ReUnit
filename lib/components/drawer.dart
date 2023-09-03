@@ -1,7 +1,10 @@
+// import 'dart:js';
+
 import 'dart:js';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
 
 import 'show_confirm_dialog.dart';
 
@@ -15,7 +18,7 @@ class Mydrawer extends StatelessWidget {
     //     });
     // FirebaseAuth.instance.signOut();
     // return Login_or_Register();
-    showConfirm;
+    // showError(context, 'text');
   }
 
   @override
@@ -25,35 +28,42 @@ class Mydrawer extends StatelessWidget {
       backgroundColor: Colors.white,
       child: Column(
         children: [
-          DrawerHeader(
+          const DrawerHeader(
             child: Icon(
               Icons.person,
-              color: Colors.grey[900],
+              color: Colors.black87,
               size: 100,
             ),
           ),
-          const SafeArea(
-            child: Center(
-              child: Padding(
-                padding: EdgeInsets.only(
-                  top: 12.0,
-                  left: 20,
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.home_outlined,
-                      size: 30,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.only(left: 70.0),
-                      child: Text(
-                        "Home",
-                        style: TextStyle(
-                            fontSize: 23, fontWeight: FontWeight.bold),
+          GestureDetector(
+            onTap: () {
+              Navigator.of(context).pop();
+            },
+            child: const SafeArea(
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: 12.0,
+                    left: 20,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.home_outlined,
+                        size: 30,
                       ),
-                    )
-                  ],
+                      Padding(
+                        padding: EdgeInsets.only(left: 70.0),
+                        child: Text(
+                          "Home",
+                          style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -80,7 +90,9 @@ class Mydrawer extends StatelessWidget {
                         child: Text(
                           "Profile",
                           style: TextStyle(
-                              fontSize: 23, fontWeight: FontWeight.bold),
+                              fontFamily: "Poppins",
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold),
                         ),
                       )
                     ],
@@ -113,7 +125,9 @@ class Mydrawer extends StatelessWidget {
                             child: Text(
                               "Logout",
                               style: TextStyle(
-                                  fontSize: 23, fontWeight: FontWeight.bold),
+                                  fontFamily: "Poppins",
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold),
                             ),
                           )
                         ],
