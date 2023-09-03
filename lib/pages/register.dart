@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
 
 import '../auth/auth_google.dart';
+import '../auth/userregister.dart';
 import '../components/show_error_dialog.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -18,38 +21,101 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  late final TextEditingController _email;
+  late final TextEditingController _password;
+  late final TextEditingController _phone;
+  late final TextEditingController _username;
   FirebaseFirestore db = FirebaseFirestore.instance;
-  final emailTextController = TextEditingController();
-  final passwordTextController = TextEditingController();
-  final RenterTextController = TextEditingController();
-  final UserNameTextController = TextEditingController();
-  final PhoneTextController = TextEditingController();
+  CollectionReference user = FirebaseFirestore.instance.collection('UserData');
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _email = TextEditingController();
+    _password = TextEditingController();
+    _phone = TextEditingController();
+    _username = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _email.dispose();
+    _password.dispose();
+    _phone.dispose();
+    _username.dispose();
+  }
+
+  Future<void> addUser(String userid) {
+    return user
+        .add({
+          'name': _username.text,
+          'email': _email.text,
+          'phoneNo': _phone.text,
+          'userid': userid,
+        })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
+
   void signup() async {
-    try {
-      final credential =
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: emailTextController.text,
-        password: passwordTextController.text,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        // print('The password provided is too weak.');
-        showError(
-          context,
-          'The password provided is too weak.',
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Color.fromRGBO(255, 93, 78, 1),
+            ),
+          );
+        });
+    Timer(Duration(seconds: 2), () async {
+      Navigator.of(context).pop();
+
+      try {
+        final credential =
+            await FirebaseAuth.instance.createUserWithEmailAndPassword(
+          email: _email.text,
+          password: _password.text,
         );
-      } else if (e.code == 'email-already-in-use') {
-        showError(context, 'The account already exists for that email.');
-      } else {
-        showError(context, 'some error in registration');
+
+        final currentUser = FirebaseAuth.instance.currentUser!.uid;
+        final userId = currentUser;
+        addUser(userId);
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'weak-password') {
+          // print('The password provided is too weak.');
+          showError(
+            context,
+            'The password provided is too weak.',
+          );
+        } else if (e.code == 'email-already-in-use') {
+          showError(context, 'The account already exists for that email.');
+        } else {
+          showError(context, 'some error in registration');
+        }
+      } catch (e) {
+        print(e);
       }
-    } catch (e) {
-      print(e);
-    }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
+    CollectionReference user =
+        FirebaseFirestore.instance.collection('UserData');
+    // Future<void> addUser() {
+    //   return user
+    //       .add({
+    //         'name': _username.text,
+    //         'email': _email.text,
+    //         'phoneNo': _phone.text,
+    //       })
+    //       .then((value) => print("User Added"))
+    //       .catchError((error) => print("Failed to add user: $error"));
+    // }
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -82,7 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   //email field
                   MyTextField(
-                    controller: emailTextController,
+                    controller: _email,
                     hintText: "Enter the Email",
                     obscureText: false,
                     enableSuggestions: true,
@@ -93,7 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 10,
                   ),
                   MyTextField(
-                    controller: UserNameTextController,
+                    controller: _username,
                     hintText: "Enter the User Name",
                     obscureText: false,
                     enableSuggestions: true,
@@ -104,7 +170,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 10,
                   ),
                   MyTextField(
-                    controller: PhoneTextController,
+                    controller: _phone,
                     hintText: "Enter the Phone Number",
                     obscureText: false,
                     enableSuggestions: true,
@@ -116,7 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   //password field
                   MyTextField(
-                    controller: passwordTextController,
+                    controller: _password,
                     hintText: "Enter the Password",
                     obscureText: true,
                     enableSuggestions: false,

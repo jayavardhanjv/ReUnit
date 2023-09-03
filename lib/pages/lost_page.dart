@@ -20,7 +20,7 @@ class _LostPageState extends State<LostPage> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 60, left: 20),
+              padding: EdgeInsets.only(top: 40, left: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -35,7 +35,7 @@ class _LostPageState extends State<LostPage> {
                     },
                     child: Image.asset(
                       "assets/icons/left.png",
-                      scale: 12,
+                      scale: 14,
                       color: Colors.black87,
                     ),
                   ),
@@ -49,7 +49,7 @@ class _LostPageState extends State<LostPage> {
                             fontFamily: 'Poppins',
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 28),
+                            fontSize: 24),
                       ),
                     ),
                   ),
@@ -73,7 +73,7 @@ class _LostPageState extends State<LostPage> {
                         "assets/icons/bell.png",
                         // height: 5,
                         // width: 5,
-                        scale: 15,
+                        scale: 18,
                         // color: Colors.black87,
                       ),
                     ),

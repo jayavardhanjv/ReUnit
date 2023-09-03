@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,62 +28,74 @@ class _LoginPageState extends State<LoginPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   void signin() async {
-    try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailTextController.text,
-        password: passwordTextController.text,
-      );
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'network-request-failed') {
-        showError(
-          context,
-          'No Internet Connection',
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+            child: CircularProgressIndicator(
+          color: Color.fromRGBO(255, 93, 78, 1),
+        ));
+      },
+    );
+    Timer(Duration(seconds: 2), () async {
+      Navigator.of(context).pop();
+      try {
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
+          email: emailTextController.text,
+          password: passwordTextController.text,
         );
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'network-request-failed') {
+          showError(
+            context,
+            'No Internet Connection',
+          );
 
-        //devtools.log('No Internet Connection');
-      } else if (e.code == "wrong-password") {
-        // return showErrorDialog(context, 'Please Enter correct password');
-        //devtools.log('Please Enter correct password');
-        showError(
-          context,
-          'Please Enter correct password',
-        );
-        //print('Please Enter correct password');
-      } else if (e.code == 'user-not-found') {
-        // showErrorDialog(context, 'Email not found');
-        showError(
-          context,
-          'Email not found',
-        );
-        // print('Email not found');
-      } else if (e.code == 'too-many-requests') {
-        // return showErrorDialog(context, 'Too many attempts please try later');
-        showError(
-          context,
-          'Too many attempts please try later',
-        );
-        //print('Too many attempts please try later');
-      } else if (e.code == 'unknwon') {
-        // showErrorDialog(context, 'Email and password field are required');
-        showError(
-          context,
-          'Email and password field are required',
-        );
-        //print('Email and password field are required');
-      } else if (e.code == 'unknown') {
-        // showErrorDialog(context, 'Email and Password Fields are required');
-        showError(
-          context,
-          'Email and Password Fields are required',
-        );
-        //print(e.code);
-      } else {
-        showError(
-          context,
-          'Some error in login',
-        );
+          //devtools.log('No Internet Connection');
+        } else if (e.code == "wrong-password") {
+          // return showErrorDialog(context, 'Please Enter correct password');
+          //devtools.log('Please Enter correct password');
+          showError(
+            context,
+            'Please Enter correct password',
+          );
+          //print('Please Enter correct password');
+        } else if (e.code == 'user-not-found') {
+          // showErrorDialog(context, 'Email not found');
+          showError(
+            context,
+            'Email not found',
+          );
+          // print('Email not found');
+        } else if (e.code == 'too-many-requests') {
+          // return showErrorDialog(context, 'Too many attempts please try later');
+          showError(
+            context,
+            'Too many attempts please try later',
+          );
+          //print('Too many attempts please try later');
+        } else if (e.code == 'unknwon') {
+          // showErrorDialog(context, 'Email and password field are required');
+          showError(
+            context,
+            'Email and password field are required',
+          );
+          //print('Email and password field are required');
+        } else if (e.code == 'unknown') {
+          // showErrorDialog(context, 'Email and Password Fields are required');
+          showError(
+            context,
+            'Email and Password Fields are required',
+          );
+          //print(e.code);
+        } else {
+          showError(
+            context,
+            'Some error in login',
+          );
+        }
       }
-    }
+    });
   }
 
   @override

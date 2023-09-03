@@ -17,7 +17,7 @@ class _FoundPageState extends State<FoundPage> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 60, left: 20),
+              padding: EdgeInsets.only(top: 40, left: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -32,7 +32,7 @@ class _FoundPageState extends State<FoundPage> {
                     },
                     child: Image.asset(
                       "assets/icons/left.png",
-                      scale: 12,
+                      scale: 14,
                       color: Colors.black87,
                     ),
                   ),
@@ -46,7 +46,7 @@ class _FoundPageState extends State<FoundPage> {
                             fontFamily: 'Poppins',
                             color: Colors.black,
                             fontWeight: FontWeight.bold,
-                            fontSize: 28),
+                            fontSize: 24),
                       ),
                     ),
                   ),
@@ -70,7 +70,7 @@ class _FoundPageState extends State<FoundPage> {
                         "assets/icons/bell.png",
                         // height: 5,
                         // width: 5,
-                        scale: 15,
+                        scale: 18,
                         // color: Colors.black87,
                       ),
                     ),

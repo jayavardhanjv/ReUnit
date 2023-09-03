@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/auth/auth_google.dart';
@@ -24,37 +26,49 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
   void signin() async {
-    try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(
-        email: emailTextController.text,
-        // actionCodeSettings:
-      );
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Color.fromRGBO(255, 93, 78, 1),
+          ));
+        });
+    Timer(const Duration(seconds: 2), () async {
       Navigator.of(context).pop();
-      return showError(
-          context, 'Password reset Email has been sent,Please check your mail');
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'invaild-email') {
-        showError(
-          context,
-          'Email is not valid',
-        );
 
-        //devtools.log('No Internet Connection');
-      } else if (e.code == "user-not-found") {
-        // return showErrorDialog(context, 'Please Enter correct password');
-        //devtools.log('Please Enter correct password');
-        showError(
-          context,
-          'No user found Associated to this email',
+      try {
+        await FirebaseAuth.instance.sendPasswordResetEmail(
+          email: emailTextController.text,
+          // actionCodeSettings:
         );
-        //print('Please Enter correct password');
-      } else {
-        showError(
-          context,
-          'Some error ',
-        );
+        // Navigator.of(context).pop();
+        return showError(context,
+            'Password reset Email has been sent,Please check your mail');
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'invaild-email') {
+          showError(
+            context,
+            'Email is not valid',
+          );
+
+          //devtools.log('No Internet Connection');
+        } else if (e.code == "user-not-found") {
+          // return showErrorDialog(context, 'Please Enter correct password');
+          //devtools.log('Please Enter correct password');
+          showError(
+            context,
+            'No user found Associated to this email',
+          );
+          //print('Please Enter correct password');
+        } else {
+          showError(
+            context,
+            'Some error ',
+          );
+        }
       }
-    }
+    });
   }
 
   @override

@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         children: [
           Container(
-            padding: EdgeInsets.only(top: 60, left: 20),
+            padding: EdgeInsets.only(top: 40, left: 20),
             child: Row(
               children: [
                 // const Icon(
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   child: Image.asset(
                     "assets/icons/menu.png",
-                    scale: 12,
+                    scale: 14,
                     color: Colors.black87,
                   ),
                 ),
@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                       "assets/icons/bell.png",
                       // height: 5,
                       // width: 5,
-                      scale: 15,
+                      scale: 18,
                       // color: Colors.black87,
                     ),
                   ),
