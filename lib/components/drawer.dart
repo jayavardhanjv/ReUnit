@@ -1,11 +1,13 @@
 // import 'dart:js';
 
-import 'dart:js';
+// import 'dart:js';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
 
+import '../pages/profile.dart';
 import 'show_confirm_dialog.dart';
 
 class Mydrawer extends StatelessWidget {
@@ -72,6 +74,14 @@ class Mydrawer extends StatelessWidget {
             height: 10,
           ),
           GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute<void>(
+                  builder: (BuildContext context) => const UserProfile(),
+                ),
+              );
+            },
             child: const SafeArea(
               child: Center(
                 child: Padding(
