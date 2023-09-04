@@ -34,7 +34,7 @@ class Mydrawer extends StatelessWidget {
           const DrawerHeader(
             child: Icon(
               LineAwesomeIcons.user,
-              color: Colors.black87,
+              color: Color.fromRGBO(255, 93, 78, 1),
               size: 100,
             ),
           ),
@@ -54,6 +54,7 @@ class Mydrawer extends StatelessWidget {
                       Icon(
                         LineAwesomeIcons.home,
                         size: 30,
+                        color: Color.fromRGBO(255, 93, 78, 1),
                       ),
                       Padding(
                         padding: EdgeInsets.only(left: 70.0),
@@ -94,6 +95,7 @@ class Mydrawer extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.person_outline,
+                        color: Color.fromRGBO(255, 93, 78, 1),
                         size: 30,
                       ),
                       Padding(
@@ -135,6 +137,7 @@ class Mydrawer extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.person_outline,
+                        color: Color.fromRGBO(255, 93, 78, 1),
                         size: 30,
                       ),
                       Padding(
@@ -176,6 +179,7 @@ class Mydrawer extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.person_outline,
+                        color: Color.fromRGBO(255, 93, 78, 1),
                         size: 30,
                       ),
                       Padding(

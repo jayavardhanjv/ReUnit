@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
+import 'package:gaming_accessories_rent_app/components/description.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Report_Found extends StatefulWidget {
   const Report_Found({super.key});
@@ -117,7 +119,14 @@ class _Report_FoundState extends State<Report_Found> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("Description"),
+                  const Text(
+                    "fill the data to report the found items.",
+                    style: TextStyle(
+                      fontFamily: "Poppins",
+                      fontWeight: FontWeight.w800,
+                      fontSize: 17,
+                    ),
+                  ),
                   SizedBox(
                     height: 10,
                   ),
@@ -126,9 +135,9 @@ class _Report_FoundState extends State<Report_Found> {
                     width: 350,
                     child: Column(
                       children: [
-                        MyTextField(
+                        Mydes(
                           controller: _email,
-                          hintText: "Description",
+                          hintText: "Describe about item you found",
                           obscureText: false,
                           enableSuggestions: true,
                           Myicon: Icons.description,
@@ -137,6 +146,52 @@ class _Report_FoundState extends State<Report_Found> {
                         ),
                         const SizedBox(
                           height: 15,
+                        ),
+                        MyTextField(
+                            controller: _address,
+                            hintText: 'address were you found',
+                            obscureText: false,
+                            enableSuggestions: true,
+                            Myicon: LineAwesomeIcons.location_arrow,
+                            Mykeybord: TextInputType.streetAddress,
+                            expand: false),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                        MyTextField(
+                            controller: _phone,
+                            hintText: 'Enter phone to contact you',
+                            obscureText: false,
+                            enableSuggestions: true,
+                            Myicon: LineAwesomeIcons.phone,
+                            Mykeybord: TextInputType.number,
+                            expand: false),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        SizedBox(
+                          width: 200,
+                          height: 60,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Navigator.push(
+                              //   context,
+                              //   CupertinoPageRoute<void>(
+                              //     builder: (BuildContext context) => const EditUser(),
+                              // ),
+                              // );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Color.fromRGBO(255, 93, 78, 1),
+                              shape: StadiumBorder(),
+                            ),
+                            child: Text(
+                              "Report",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),
