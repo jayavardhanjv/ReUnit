@@ -148,6 +148,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   //email field
                   MyTextField(
+                    expand: false,
                     controller: _email,
                     hintText: "Enter the Email",
                     obscureText: false,
@@ -159,6 +160,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 10,
                   ),
                   MyTextField(
+                    expand: false,
                     controller: _username,
                     hintText: "Enter the User Name",
                     obscureText: false,
@@ -170,6 +172,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     height: 10,
                   ),
                   MyTextField(
+                    expand: false,
                     controller: _phone,
                     hintText: "Enter the Phone Number",
                     obscureText: false,
@@ -182,6 +185,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   ),
                   //password field
                   MyTextField(
+                    expand: false,
                     controller: _password,
                     hintText: "Enter the Password",
                     obscureText: true,

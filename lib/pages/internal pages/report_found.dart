@@ -1,9 +1,41 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 
-class Report_Found extends StatelessWidget {
+class Report_Found extends StatefulWidget {
   const Report_Found({super.key});
+
+  @override
+  State<Report_Found> createState() => _Report_FoundState();
+}
+
+class _Report_FoundState extends State<Report_Found> {
+  late final TextEditingController _email;
+  late final TextEditingController _address;
+  late final TextEditingController _phone;
+  late final TextEditingController _username;
+  // FirebaseFirestore db = FirebaseFirestore.instance;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _email = TextEditingController();
+    _address = TextEditingController();
+    _phone = TextEditingController();
+    _username = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _email.dispose();
+    _address.dispose();
+    _phone.dispose();
+    _username.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -79,16 +111,35 @@ class Report_Found extends StatelessWidget {
             Container(
               height: 703,
               decoration: BoxDecoration(
-                color: Colors.white70,
+                // color: Colors.white70,
                 borderRadius: BorderRadius.circular(30),
               ),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  Text("Description"),
                   SizedBox(
                     height: 10,
                   ),
                   Container(
-                    padding: EdgeInsets.only(left: 100),
+                    // padding: EdgeInsets.only(left: 100),
+                    width: 350,
+                    child: Column(
+                      children: [
+                        MyTextField(
+                          controller: _email,
+                          hintText: "Description",
+                          obscureText: false,
+                          enableSuggestions: true,
+                          Myicon: Icons.description,
+                          Mykeybord: TextInputType.multiline,
+                          expand: true,
+                        ),
+                        const SizedBox(
+                          height: 15,
+                        ),
+                      ],
+                    ),
                     // child: BigText(
                     //   text: 'Lost Items',
                     // ),

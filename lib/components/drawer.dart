@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../pages/profile.dart';
 import 'show_confirm_dialog.dart';
@@ -32,7 +33,7 @@ class Mydrawer extends StatelessWidget {
         children: [
           const DrawerHeader(
             child: Icon(
-              Icons.person,
+              LineAwesomeIcons.user,
               color: Colors.black87,
               size: 100,
             ),
@@ -51,7 +52,7 @@ class Mydrawer extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.home_outlined,
+                        LineAwesomeIcons.home,
                         size: 30,
                       ),
                       Padding(
@@ -111,43 +112,125 @@ class Mydrawer extends StatelessWidget {
               ),
             ),
           ),
-          Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  logout();
-                },
-                child: const SafeArea(
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                        top: 5.0,
-                        left: 20,
+          const SizedBox(
+            height: 10,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute<void>(
+                  builder: (BuildContext context) => const UserProfile(),
+                ),
+              );
+            },
+            child: const SafeArea(
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: 5.0,
+                    left: 20,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.person_outline,
+                        size: 30,
                       ),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.logout_outlined,
-                            size: 30,
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(left: 70.0),
-                            child: Text(
-                              "Logout",
-                              style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 23,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 70.0),
+                        child: Text(
+                          "Items Lost",
+                          style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
-            ],
-          )
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute<void>(
+                  builder: (BuildContext context) => const UserProfile(),
+                ),
+              );
+            },
+            child: const SafeArea(
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                    top: 5.0,
+                    left: 20,
+                  ),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.person_outline,
+                        size: 30,
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(left: 70.0),
+                        child: Text(
+                          "Items Found",
+                          style: TextStyle(
+                              fontFamily: "Poppins",
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ),
+          // Column(
+          //   children: [
+          //     GestureDetector(
+          //       onTap: () {
+          //         logout();
+          //       },
+          //       child: const SafeArea(
+          //         child: Center(
+          //           child: Padding(
+          //             padding: EdgeInsets.only(
+          //               top: 5.0,
+          //               left: 20,
+          //             ),
+          //             child: Row(
+          //               children: [
+          //                 Icon(
+          //                   LineAwesomeIcons.alternate_sign_out,
+          //                   size: 30,
+          //                 ),
+          //                 Padding(
+          //                   padding: EdgeInsets.only(left: 70.0),
+          //                   child: Text(
+          //                     "Logout",
+          //                     style: TextStyle(
+          //                         fontFamily: "Poppins",
+          //                         fontSize: 23,
+          //                         fontWeight: FontWeight.bold),
+          //                   ),
+          //                 )
+          //               ],
+          //             ),
+          //           ),
+          //         ),
+          //       ),
+          //     ),
+          //   ],
+          // )
         ],
       ),
     );

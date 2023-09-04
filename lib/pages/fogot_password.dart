@@ -103,6 +103,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                   ),
                   //email field
                   MyTextField(
+                    expand: false,
                     controller: emailTextController,
                     hintText: "Enter the  Email",
                     obscureText: false,
