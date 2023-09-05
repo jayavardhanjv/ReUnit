@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../auth/auth_google.dart';
 import '../auth/userregister.dart';
@@ -22,6 +23,7 @@ class RegisterPage extends StatefulWidget {
 
 class _RegisterPageState extends State<RegisterPage> {
   late final TextEditingController _email;
+  late final TextEditingController _address;
   late final TextEditingController _password;
   late final TextEditingController _phone;
   late final TextEditingController _username;
@@ -33,6 +35,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // TODO: implement initState
     super.initState();
     _email = TextEditingController();
+    _address = TextEditingController();
     _password = TextEditingController();
     _phone = TextEditingController();
     _username = TextEditingController();
@@ -43,6 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
     // TODO: implement dispose
     super.dispose();
     _email.dispose();
+    _address.dispose();
     _password.dispose();
     _phone.dispose();
     _username.dispose();
@@ -55,6 +59,7 @@ class _RegisterPageState extends State<RegisterPage> {
           'email': _email.text,
           'phoneNo': _phone.text,
           'userid': userid,
+          'address': _address.text,
         })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
@@ -79,21 +84,21 @@ class _RegisterPageState extends State<RegisterPage> {
           email: _email.text,
           password: _password.text,
         );
-
-        final currentUser = FirebaseAuth.instance.currentUser!.uid;
-        final userId = currentUser;
-        addUser(userId);
+        Timer(Duration(microseconds: 50), () {
+          final currentUser = FirebaseAuth.instance.currentUser!.uid;
+          final userId = currentUser;
+          addUser(userId);
+        });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
           // print('The password provided is too weak.');
           showError(
-            context,
-            'The password provided is too weak.',
-          );
+              context, 'The password provided is too weak.', 'an error occred');
         } else if (e.code == 'email-already-in-use') {
-          showError(context, 'The account already exists for that email.');
+          showError(context, 'The account already exists for that email.',
+              'an error occred');
         } else {
-          showError(context, 'some error in registration');
+          showError(context, 'some error in registration', 'an error occred');
         }
       } catch (e) {
         print(e);
@@ -129,7 +134,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   //icons or image
                   Image.asset(
                     "assets/images/Sign up-pana.png",
-                    scale: 12,
+                    scale: 14,
                   ),
                   const SizedBox(
                     height: 15,
@@ -179,6 +184,18 @@ class _RegisterPageState extends State<RegisterPage> {
                     enableSuggestions: true,
                     Myicon: Icons.phone_android_outlined,
                     Mykeybord: TextInputType.number,
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  MyTextField(
+                    expand: false,
+                    controller: _address,
+                    hintText: "Enter the Address",
+                    obscureText: false,
+                    enableSuggestions: true,
+                    Myicon: LineAwesomeIcons.location_arrow,
+                    Mykeybord: TextInputType.name,
                   ),
                   const SizedBox(
                     height: 10,

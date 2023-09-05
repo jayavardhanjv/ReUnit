@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
+import 'package:gaming_accessories_rent_app/pages/profile.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class EditUser extends StatefulWidget {
@@ -19,12 +23,52 @@ class _EditUserState extends State<EditUser> {
   late final TextEditingController _address;
   late final TextEditingController _phone;
   late final TextEditingController _username;
+
   FirebaseFirestore db = FirebaseFirestore.instance;
+  String docid = '';
+
+  Future GetuserDoc() async {
+    FirebaseFirestore.instance.collection("UserData").doc(docid).update({
+      'name': _username.text,
+      'address': _address.text,
+      'phoneNo': _phone.text,
+      // 'email': _email.text
+    }).then((value) => print("DocumentSnapshot successfully updated!"),
+        onError: (e) => print("Error updating document $e"));
+    ;
+    showDialog(
+        context: context,
+        builder: (context) {
+          return const Center(
+              child: CircularProgressIndicator(
+            color: Color.fromRGBO(255, 93, 78, 1),
+          ));
+        });
+    Timer(Duration(seconds: 1), () {
+      Navigator.of(context).pop();
+      Navigator.of(context).pop();
+      // Navigator.of(context).pushAndRemoveUntil(
+      //     MaterialPageRoute(builder: (c) => UserProfile()), (route) => false);
+    });
+  }
+
+  Future update() async {
+    final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+    await FirebaseFirestore.instance
+        .collection('UserData')
+        .where("userid", isEqualTo: currentuid)
+        .get()
+        .then((snapshot) => snapshot.docs.forEach((element) {
+              docid = element.id;
+            }));
+    // return docid;
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    update();
     _email = TextEditingController();
     _address = TextEditingController();
     _phone = TextEditingController();
@@ -141,18 +185,18 @@ class _EditUserState extends State<EditUser> {
                   Myicon: Icons.person,
                   Mykeybord: TextInputType.text,
                 ),
-                const SizedBox(
-                  height: 15,
-                ),
-                MyTextField(
-                  expand: false,
-                  controller: _email,
-                  hintText: "Enter the Email",
-                  obscureText: false,
-                  enableSuggestions: true,
-                  Myicon: Icons.mail_outline,
-                  Mykeybord: TextInputType.emailAddress,
-                ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                // MyTextField(
+                //   expand: false,
+                //   controller: _email,
+                //   hintText: "Enter the Email",
+                //   obscureText: false,
+                //   enableSuggestions: true,
+                //   Myicon: Icons.mail_outline,
+                //   Mykeybord: TextInputType.emailAddress,
+                // ),
                 const SizedBox(
                   height: 15,
                 ),
@@ -185,12 +229,8 @@ class _EditUserState extends State<EditUser> {
                   height: 60,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute<void>(
-                          builder: (BuildContext context) => const EditUser(),
-                        ),
-                      );
+                      // update();
+                      GetuserDoc();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Color.fromRGBO(255, 93, 78, 1),

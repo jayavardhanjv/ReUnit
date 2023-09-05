@@ -4,12 +4,13 @@ import 'package:flutter/material.dart';
 Future<void> showError(
   BuildContext context,
   String text,
+  String title,
 ) {
   return showDialog(
       context: context,
       builder: (context) {
         return CupertinoAlertDialog(
-          title: const Text("an error occered"),
+          title: Text(title),
           content: Text(text),
           actions: [
             MaterialButton(

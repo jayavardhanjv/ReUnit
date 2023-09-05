@@ -46,53 +46,36 @@ class _LoginPageState extends State<LoginPage> {
         );
       } on FirebaseAuthException catch (e) {
         if (e.code == 'network-request-failed') {
-          showError(
-            context,
-            'No Internet Connection',
-          );
+          showError(context, 'No Internet Connection', 'an error occred');
 
           //devtools.log('No Internet Connection');
         } else if (e.code == "wrong-password") {
           // return showErrorDialog(context, 'Please Enter correct password');
           //devtools.log('Please Enter correct password');
           showError(
-            context,
-            'Please Enter correct password',
-          );
+              context, 'Please Enter correct password', 'an error occred');
           //print('Please Enter correct password');
         } else if (e.code == 'user-not-found') {
           // showErrorDialog(context, 'Email not found');
-          showError(
-            context,
-            'Email not found',
-          );
+          showError(context, 'Email not found', 'an error occred');
           // print('Email not found');
         } else if (e.code == 'too-many-requests') {
           // return showErrorDialog(context, 'Too many attempts please try later');
           showError(
-            context,
-            'Too many attempts please try later',
-          );
+              context, 'Too many attempts please try later', 'an error occred');
           //print('Too many attempts please try later');
         } else if (e.code == 'unknwon') {
           // showErrorDialog(context, 'Email and password field are required');
-          showError(
-            context,
-            'Email and password field are required',
-          );
+          showError(context, 'Email and password field are required',
+              'an error occred');
           //print('Email and password field are required');
         } else if (e.code == 'unknown') {
           // showErrorDialog(context, 'Email and Password Fields are required');
-          showError(
-            context,
-            'Email and Password Fields are required',
-          );
+          showError(context, 'Email and Password Fields are required',
+              'an error occred');
           //print(e.code);
         } else {
-          showError(
-            context,
-            'Some error in login',
-          );
+          showError(context, 'Some error in login', 'an error occred');
         }
       }
     });

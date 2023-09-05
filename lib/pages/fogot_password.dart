@@ -43,29 +43,23 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
           // actionCodeSettings:
         );
         // Navigator.of(context).pop();
-        return showError(context,
-            'Password reset Email has been sent,Please check your mail');
+        return showError(
+            context,
+            'Password reset Email has been sent,Please check your mail',
+            'an error occred');
       } on FirebaseAuthException catch (e) {
         if (e.code == 'invaild-email') {
-          showError(
-            context,
-            'Email is not valid',
-          );
+          showError(context, 'Email is not valid', 'an error occred');
 
           //devtools.log('No Internet Connection');
         } else if (e.code == "user-not-found") {
           // return showErrorDialog(context, 'Please Enter correct password');
           //devtools.log('Please Enter correct password');
-          showError(
-            context,
-            'No user found Associated to this email',
-          );
+          showError(context, 'No user found Associated to this email',
+              'an error occred');
           //print('Please Enter correct password');
         } else {
-          showError(
-            context,
-            'Some error ',
-          );
+          showError(context, 'Some error ', 'an error occred');
         }
       }
     });

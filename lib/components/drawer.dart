@@ -6,6 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
+import 'package:gaming_accessories_rent_app/pages/found_page.dart';
+import 'package:gaming_accessories_rent_app/pages/lost_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../pages/profile.dart';
@@ -122,7 +124,7 @@ class Mydrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 CupertinoPageRoute<void>(
-                  builder: (BuildContext context) => const UserProfile(),
+                  builder: (BuildContext context) => const LostPage(),
                 ),
               );
             },
@@ -136,12 +138,12 @@ class Mydrawer extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.person_outline,
+                        LineAwesomeIcons.book_reader,
                         color: Color.fromRGBO(255, 93, 78, 1),
                         size: 30,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 70.0),
+                        padding: EdgeInsets.only(left: 50.0),
                         child: Text(
                           "Items Lost",
                           style: TextStyle(
@@ -164,7 +166,7 @@ class Mydrawer extends StatelessWidget {
               Navigator.push(
                 context,
                 CupertinoPageRoute<void>(
-                  builder: (BuildContext context) => const UserProfile(),
+                  builder: (BuildContext context) => const FoundPage(),
                 ),
               );
             },
@@ -178,12 +180,12 @@ class Mydrawer extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        Icons.person_outline,
+                        LineAwesomeIcons.intercom,
                         color: Color.fromRGBO(255, 93, 78, 1),
                         size: 30,
                       ),
                       Padding(
-                        padding: EdgeInsets.only(left: 70.0),
+                        padding: EdgeInsets.only(left: 40.0),
                         child: Text(
                           "Items Found",
                           style: TextStyle(

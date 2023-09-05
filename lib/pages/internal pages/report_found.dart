@@ -1,7 +1,12 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/description.dart';
+import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -13,17 +18,29 @@ class Report_Found extends StatefulWidget {
 }
 
 class _Report_FoundState extends State<Report_Found> {
-  late final TextEditingController _email;
+  late final TextEditingController _dec;
   late final TextEditingController _address;
   late final TextEditingController _phone;
   late final TextEditingController _username;
-  // FirebaseFirestore db = FirebaseFirestore.instance;
+  final currentuser = FirebaseAuth.instance.currentUser!.uid;
+  void update() {
+    FirebaseFirestore.instance
+        .collection("FoundItems")
+        .add({
+          "des": _dec.text,
+          "address": _address.text,
+          "phno": _phone.text,
+          "useruid": currentuser
+        })
+        .then((snapshot) => print("User Added"))
+        .catchError((onError) => print("error found"));
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _email = TextEditingController();
+    _dec = TextEditingController();
     _address = TextEditingController();
     _phone = TextEditingController();
     _username = TextEditingController();
@@ -33,7 +50,7 @@ class _Report_FoundState extends State<Report_Found> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _email.dispose();
+    _dec.dispose();
     _address.dispose();
     _phone.dispose();
     _username.dispose();
@@ -136,7 +153,7 @@ class _Report_FoundState extends State<Report_Found> {
                     child: Column(
                       children: [
                         Mydes(
-                          controller: _email,
+                          controller: _dec,
                           hintText: "Describe about item you found",
                           obscureText: false,
                           enableSuggestions: true,
@@ -180,6 +197,21 @@ class _Report_FoundState extends State<Report_Found> {
                               //     builder: (BuildContext context) => const EditUser(),
                               // ),
                               // );
+                              update();
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Center(
+                                        child: CircularProgressIndicator(
+                                      color: Color.fromRGBO(255, 93, 78, 1),
+                                    ));
+                                  });
+                              Timer(Duration(seconds: 1), () {
+                                Navigator.of(context).pop();
+                                Navigator.of(context).pop();
+                                showError(context, 'the data had been added',
+                                    'Report added succesfully');
+                              });
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color.fromRGBO(255, 93, 78, 1),
