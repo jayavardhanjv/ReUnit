@@ -1,7 +1,12 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/description.dart';
+import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -13,17 +18,25 @@ class Report_Lost extends StatefulWidget {
 }
 
 class _Report_LostState extends State<Report_Lost> {
-  late final TextEditingController _email;
+  late final TextEditingController _doc;
   late final TextEditingController _address;
   late final TextEditingController _phone;
   late final TextEditingController _username;
-  // FirebaseFirestore db = FirebaseFirestore.instance;
+  final currentuserid = FirebaseAuth.instance.currentUser!.uid;
+  void update() {
+    FirebaseFirestore.instance.collection("LostItems").add({
+      'desc': _doc.text,
+      "address": _address.text,
+      "phno": _phone.text,
+      'userid': currentuserid,
+    });
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _email = TextEditingController();
+    _doc = TextEditingController();
     _address = TextEditingController();
     _phone = TextEditingController();
     _username = TextEditingController();
@@ -33,7 +46,7 @@ class _Report_LostState extends State<Report_Lost> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    _email.dispose();
+    _doc.dispose();
     _address.dispose();
     _phone.dispose();
     _username.dispose();
@@ -136,7 +149,7 @@ class _Report_LostState extends State<Report_Lost> {
                     child: Column(
                       children: [
                         Mydes(
-                          controller: _email,
+                          controller: _doc,
                           hintText: "Describe about item you Lost",
                           obscureText: false,
                           enableSuggestions: true,
@@ -180,6 +193,21 @@ class _Report_LostState extends State<Report_Lost> {
                               //     builder: (BuildContext context) => const EditUser(),
                               // ),
                               // );
+                              update();
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Center(
+                                        child: CircularProgressIndicator(
+                                      color: Color.fromRGBO(255, 93, 78, 1),
+                                    ));
+                                  });
+                              Timer(Duration(seconds: 1), () {
+                                Navigator.of(context).pop();
+                                Navigator.of(context).pop();
+                                showError(context, 'the data had been added',
+                                    'Report added succesfully');
+                              });
                             },
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Color.fromRGBO(255, 93, 78, 1),
