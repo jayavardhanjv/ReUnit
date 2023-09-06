@@ -1,6 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/bigText.dart';
+import 'package:gaming_accessories_rent_app/components/report_iteam.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 
 import '../components/nav.dart';
@@ -13,6 +16,33 @@ class LostPage extends StatefulWidget {
 }
 
 class _LostPageState extends State<LostPage> {
+  List docId = [];
+  // var identifier = new Map();
+  String name = '';
+  // final String joined_data = FirebaseAuth.instance.currentUser!.uid;
+  Future getDocID() async {
+    // final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance.collection("FoundItems").get().then(
+          (snapshot) => snapshot.docs.forEach((element) {
+            docId.add(element.reference.id);
+          }),
+        );
+  }
+
+  String username = '';
+  String useremail = '';
+  String useraddress = '';
+  String userph = '';
+  final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // getDocID();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,9 +111,6 @@ class _LostPageState extends State<LostPage> {
                 ],
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
             Container(
               height: 703,
               decoration: BoxDecoration(
@@ -95,12 +122,18 @@ class _LostPageState extends State<LostPage> {
                   SizedBox(
                     height: 10,
                   ),
-                  Container(
-                    padding: EdgeInsets.only(left: 100),
-                    // child: BigText(
-                    //   text: 'Lost Items',
-                    // ),
-                  ),
+                  Expanded(
+                      child: FutureBuilder(
+                    future: getDocID(),
+                    builder: (context, snapshot) {
+                      return ListView.builder(
+                        itemCount: docId.length,
+                        itemBuilder: (context, index) {
+                          return ReportContiner();
+                        },
+                      );
+                    },
+                  )),
                 ],
               ),
             )
