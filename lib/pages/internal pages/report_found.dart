@@ -136,12 +136,18 @@ class _Report_FoundState extends State<Report_Found> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    "fill the data to report the found items.",
-                    style: TextStyle(
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w800,
-                      fontSize: 17,
+                  Container(
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: Center(
+                      child: Text(
+                        "fill the data to report the found items.",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontWeight: FontWeight.w800,
+                          fontSize: 17,
+                          overflow: TextOverflow.clip,
+                        ),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -149,7 +155,7 @@ class _Report_FoundState extends State<Report_Found> {
                   ),
                   Container(
                     // padding: EdgeInsets.only(left: 100),
-                    width: 350,
+                    width: MediaQuery.of(context).size.width - 50,
                     child: Column(
                       children: [
                         Mydes(
@@ -220,6 +226,7 @@ class _Report_FoundState extends State<Report_Found> {
                             child: Text(
                               "Report",
                               style: TextStyle(
+                                fontFamily: "Poppins",
                                 fontSize: 20,
                               ),
                             ),

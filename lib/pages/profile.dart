@@ -114,13 +114,16 @@ class _UserProfileState extends State<UserProfile> {
                 ),
                 Container(
                   height: 700,
-                  width: 500,
+                  width: MediaQuery.of(context).size.width - 50,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.white70,
                   ),
                   child: Column(
                     children: [
+                      SizedBox(
+                        height: 30,
+                      ),
                       Stack(
                         children: [
                           SizedBox(
@@ -233,7 +236,12 @@ class _UserProfileState extends State<UserProfile> {
                                 const Color.fromRGBO(255, 93, 78, 1),
                             shape: StadiumBorder(),
                           ),
-                          child: const Text("Edit data"),
+                          child: const Text(
+                            "Edit data",
+                            style: TextStyle(
+                              fontFamily: 'Poppins',
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(
@@ -276,8 +284,9 @@ class _UserProfileState extends State<UserProfile> {
                                     Text(
                                       "Information",
                                       style: TextStyle(
-                                        fontSize: 24,
+                                        fontSize: 20,
                                         fontWeight: FontWeight.w600,
+                                        fontFamily: 'Poppins',
                                       ),
                                     ),
                                     SizedBox(
@@ -334,17 +343,18 @@ class _UserProfileState extends State<UserProfile> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 30,
+                                      width: 50,
                                     ),
                                     Text(
                                       "Logout",
                                       style: TextStyle(
-                                          fontSize: 24,
+                                          fontFamily: 'Poppins',
+                                          fontSize: 20,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.blue),
                                     ),
                                     SizedBox(
-                                      width: 80,
+                                      width: 70,
                                     ),
                                     // Container(
                                     //     width: 40,

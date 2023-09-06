@@ -31,7 +31,7 @@ class Mydes extends StatelessWidget {
     // kype = type;
     // var kype;
     return SizedBox(
-      width: 350, // <-- TextField width
+      width: MediaQuery.of(context).size.width - 50, // <-- TextField width
       height: 200,
       child: Form(
         key: _formKey,
@@ -63,6 +63,9 @@ class Mydes extends StatelessWidget {
               suffixIcon: Icon(Myicon as IconData?),
               suffixIconColor: Colors.grey,
               hintStyle: TextStyle(
+                fontFamily: "Poppins",
+                overflow: TextOverflow.visible,
+                fontSize: 14,
                 color: Colors.grey[500],
               )),
         ),

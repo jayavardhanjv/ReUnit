@@ -135,7 +135,7 @@ class _EditUserState extends State<EditUser> {
             // const Divider(),
             Container(
               height: 750,
-              width: 350,
+              width: MediaQuery.of(context).size.width - 50,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 // color: Colors.white70,
@@ -236,7 +236,12 @@ class _EditUserState extends State<EditUser> {
                       backgroundColor: Color.fromRGBO(255, 93, 78, 1),
                       shape: StadiumBorder(),
                     ),
-                    child: Text("Confirm"),
+                    child: Text(
+                      "Confirm",
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                      ),
+                    ),
                   ),
                 ),
               ])),

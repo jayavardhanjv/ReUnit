@@ -132,12 +132,17 @@ class _Report_LostState extends State<Report_Lost> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  const Text(
-                    "fill the data to report the Lost items.",
-                    style: TextStyle(
-                      fontFamily: "Poppins",
-                      fontWeight: FontWeight.w800,
-                      fontSize: 17,
+                  Container(
+                    width: MediaQuery.of(context).size.width - 50,
+                    child: Center(
+                      child: const Text(
+                        "fill the data to report the Lost items.",
+                        style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w800,
+                            fontSize: 17,
+                            overflow: TextOverflow.clip),
+                      ),
                     ),
                   ),
                   SizedBox(
@@ -145,7 +150,7 @@ class _Report_LostState extends State<Report_Lost> {
                   ),
                   Container(
                     // padding: EdgeInsets.only(left: 100),
-                    width: 350,
+                    width: MediaQuery.of(context).size.width - 50,
                     child: Column(
                       children: [
                         Mydes(
@@ -213,9 +218,10 @@ class _Report_LostState extends State<Report_Lost> {
                               backgroundColor: Color.fromRGBO(255, 93, 78, 1),
                               shape: StadiumBorder(),
                             ),
-                            child: Text(
+                            child: const Text(
                               "Report",
                               style: TextStyle(
+                                fontFamily: "Poppins",
                                 fontSize: 20,
                               ),
                             ),

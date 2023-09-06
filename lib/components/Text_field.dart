@@ -32,35 +32,40 @@ class MyTextField extends StatelessWidget {
     // var kype;
     return Form(
       key: _formKey,
-      child: TextFormField(
-        keyboardType: Mykeybord,
-        // maxLines: 5,
-        validator: RequiredValidator(errorText: "Required..*"),
-        cursorColor: Colors.red[300],
-        controller: controller,
-        obscureText: obscureText,
-        enableSuggestions: enableSuggestions,
-        expands: expand,
-        decoration: InputDecoration(
-            hintText: hintText,
-            enabledBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.white,
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width - 30,
+        child: TextFormField(
+          keyboardType: Mykeybord,
+          // maxLines: 5,
+          validator: RequiredValidator(errorText: "Required..*"),
+          cursorColor: Colors.red[300],
+          controller: controller,
+          obscureText: obscureText,
+          enableSuggestions: enableSuggestions,
+          expands: expand,
+          decoration: InputDecoration(
+              hintText: hintText,
+              enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.white,
+                ),
               ),
-            ),
-            focusedBorder: const OutlineInputBorder(
-              borderSide: BorderSide(
-                color: Colors.white,
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(
+                  color: Colors.white,
+                ),
               ),
-            ),
-            fillColor: Colors.grey.shade100,
-            filled: true,
-            focusColor: Colors.red[300],
-            suffixIcon: Icon(Myicon as IconData?),
-            suffixIconColor: Colors.grey,
-            hintStyle: TextStyle(
-              color: Colors.grey[500],
-            )),
+              fillColor: Colors.grey.shade100,
+              filled: true,
+              focusColor: Colors.red[300],
+              suffixIcon: Icon(Myicon as IconData?),
+              suffixIconColor: Colors.grey,
+              hintStyle: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 12,
+                color: Colors.grey[500],
+              )),
+        ),
       ),
     );
   }
