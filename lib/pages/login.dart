@@ -96,11 +96,9 @@ class _LoginPageState extends State<LoginPage> {
                     //icons or image
                     Image.asset(
                       "assets/images/Computer login-pana.png",
-                      scale: 8,
+                      scale: 10,
                     ),
-                    const SizedBox(
-                      height: 30,
-                    ),
+
                     //welcome message
                     const Text(
                       "Welcome Back, We Missed You!",
@@ -152,13 +150,12 @@ class _LoginPageState extends State<LoginPage> {
                           "Forgot Password?",
                           style: TextStyle(
                               color: Color.fromRGBO(255, 93, 78, 1),
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.w100,
+                              fontFamily: "Poppins"),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
+
                     //Signin Button
                     MyButton(
                       onTap: signin,

@@ -132,9 +132,19 @@ class _HomePageState extends State<HomePage> {
                           height: 200,
                           // color: Colors.grey,
                           decoration: BoxDecoration(
-                            color: Colors.deepPurple[100],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                              color: Colors.deepPurple[100],
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 5.0, // soften the shadow
+                                  spreadRadius: 2.0, //extend the shadow
+                                  offset: Offset(
+                                    3.0, // Move to right 5  horizontally
+                                    3.0, // Move to bottom 5 Vertically
+                                  ),
+                                )
+                              ]),
                           child: Container(
                             // padding: const EdgeInsets.all(10),
                             child: Column(
@@ -180,9 +190,20 @@ class _HomePageState extends State<HomePage> {
                           height: 200,
                           // color: Colors.grey,
                           decoration: BoxDecoration(
-                            color: Colors.amber[100],
-                            borderRadius: BorderRadius.circular(20),
-                          ),
+                              color: Colors.amber[100],
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey,
+                                  blurRadius: 5.0, // soften the shadow
+                                  spreadRadius: 2.0, //extend the shadow
+                                  offset: Offset(
+                                    3.0, // Move to right 5  horizontally
+                                    3.0, // Move to bottom 5 Vertically
+                                  ),
+                                )
+                              ]),
+
                           child: Container(
                             padding: EdgeInsets.all(10),
                             child: Column(
@@ -222,13 +243,24 @@ class _HomePageState extends State<HomePage> {
                   height: 400,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5.0, // soften the shadow
+                        spreadRadius: 2.0, //extend the shadow
+                        offset: Offset(
+                          3.0, // Move to right 5  horizontally
+                          3.0, // Move to bottom 5 Vertically
+                        ),
+                      )
+                    ],
                     borderRadius: BorderRadius.circular(30),
                     color: Colors.grey.shade200,
                   ),
                   child: Column(
                     children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: MediaQuery.of(context).size.height * 0.03,
                       ),
                       Align(
                         alignment: Alignment.centerLeft,
@@ -284,6 +316,19 @@ class _HomePageState extends State<HomePage> {
                                       width: MediaQuery.of(context).size.width -
                                           40,
                                       decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            blurRadius:
+                                                5.0, // soften the shadow
+                                            spreadRadius:
+                                                2.0, //extend the shadow
+                                            offset: Offset(
+                                              3.0, // Move to right 5  horizontally
+                                              3.0, // Move to bottom 5 Vertically
+                                            ),
+                                          )
+                                        ],
                                         gradient: LinearGradient(
                                             begin: Alignment.bottomLeft,
                                             end: Alignment.topRight,
@@ -307,7 +352,7 @@ class _HomePageState extends State<HomePage> {
                                                       "assets/icons/found.png")),
                                               Container(
                                                 padding: const EdgeInsets.only(
-                                                    left: 30),
+                                                    left: 0),
                                                 child: Text(
                                                   "Found an Item",
                                                   style: TextStyle(
@@ -324,7 +369,7 @@ class _HomePageState extends State<HomePage> {
                                                           MediaQuery.of(context)
                                                                   .size
                                                                   .width *
-                                                              0.1),
+                                                              0.025),
                                                   child: Image.asset(
                                                     "assets/icons/right-arrow.png",
                                                     color: Colors.white70,
@@ -355,6 +400,19 @@ class _HomePageState extends State<HomePage> {
                                       width: MediaQuery.of(context).size.width -
                                           40,
                                       decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            blurRadius:
+                                                5.0, // soften the shadow
+                                            spreadRadius:
+                                                2.0, //extend the shadow
+                                            offset: Offset(
+                                              3.0, // Move to right 5  horizontally
+                                              3.0, // Move to bottom 5 Vertically
+                                            ),
+                                          )
+                                        ],
                                         // color: Colors.pink[200],
                                         borderRadius: BorderRadius.circular(20),
                                         gradient: LinearGradient(
@@ -378,8 +436,6 @@ class _HomePageState extends State<HomePage> {
                                                   child: Image.asset(
                                                       "assets/icons/lost.png")),
                                               Container(
-                                                padding:
-                                                    EdgeInsets.only(right: 30),
                                                 child: Text(
                                                   "Lost an Item",
                                                   style: TextStyle(
@@ -390,18 +446,12 @@ class _HomePageState extends State<HomePage> {
                                                   ),
                                                 ),
                                               ),
-                                              Positioned(
-                                                right: MediaQuery.of(context)
-                                                        .size
-                                                        .width -
-                                                    50,
-                                                child: Container(
-                                                    // alignment: Alignment.centerRight,
-                                                    child: Image.asset(
-                                                        "assets/icons/right-arrow.png",
-                                                        scale: 20,
-                                                        color: Colors.white70)),
-                                              ),
+                                              Container(
+                                                  // alignment: Alignment.centerRight,
+                                                  child: Image.asset(
+                                                      "assets/icons/right-arrow.png",
+                                                      scale: 20,
+                                                      color: Colors.white70)),
                                             ],
                                           ),
                                         ),

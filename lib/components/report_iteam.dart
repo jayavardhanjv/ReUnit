@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class ReportContiner extends StatelessWidget {
-  const ReportContiner({super.key});
-
+  const ReportContiner({
+    super.key,
+    required this.id,
+  });
+  final String? id;
   @override
   Widget build(BuildContext context) {
     return Expanded(

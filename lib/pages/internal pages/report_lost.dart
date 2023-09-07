@@ -25,10 +25,11 @@ class _Report_LostState extends State<Report_Lost> {
   final currentuserid = FirebaseAuth.instance.currentUser!.uid;
   void update() {
     FirebaseFirestore.instance.collection("LostItems").add({
-      'desc': _doc.text,
+      'des': _doc.text,
       "address": _address.text,
       "phno": _phone.text,
       'userid': currentuserid,
+      "date": Timestamp.fromDate(DateTime.now())
     });
   }
 

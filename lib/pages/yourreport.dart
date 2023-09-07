@@ -7,22 +7,26 @@ import 'package:gaming_accessories_rent_app/pages/internal%20pages/get_internal_
 import 'package:gaming_accessories_rent_app/pages/internal%20pages/show_report.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 
-class FoundPage extends StatefulWidget {
-  const FoundPage({super.key});
+class MyReport extends StatefulWidget {
+  const MyReport({super.key});
 
   @override
-  State<FoundPage> createState() => _FoundPageState();
+  State<MyReport> createState() => _MyReportState();
 }
 
-class _FoundPageState extends State<FoundPage> {
+class _MyReportState extends State<MyReport> {
   List docId = [];
   // var identifier = new Map();
   String name = '';
   // final String joined_data = FirebaseAuth.instance.currentUser!.uid;
   Future getDocID() async {
-    // final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+    final String currentuid = FirebaseAuth.instance.currentUser!.uid;
 
-    await FirebaseFirestore.instance.collection("FoundItems").get().then(
+    await FirebaseFirestore.instance
+        .collection("FoundItems")
+        .where("useruid", isEqualTo: currentuid)
+        .get()
+        .then(
           (snapshot) => snapshot.docs.forEach((element) {
             docId.add(element.reference.id);
           }),
@@ -67,12 +71,12 @@ class _FoundPageState extends State<FoundPage> {
                   // ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.of(context).pop();
+                      // Navigator.of(context).pop();
                     },
                     child: Image.asset(
                       "assets/icons/left.png",
                       scale: 14,
-                      color: Colors.black87,
+                      color: Colors.white,
                     ),
                   ),
                   Expanded(child: Container()),
@@ -80,7 +84,7 @@ class _FoundPageState extends State<FoundPage> {
                     padding: const EdgeInsets.only(left: 0),
                     child: Container(
                       child: const Text(
-                        "Found Items",
+                        "My Report",
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             color: Colors.black,
@@ -92,11 +96,11 @@ class _FoundPageState extends State<FoundPage> {
                   Expanded(child: Container()),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) => const NotificationPage()),
-                      );
+                      // Navigator.push(
+                      //   context,
+                      //   CupertinoPageRoute(
+                      //       builder: (context) => const NotificationPage()),
+                      // );
                     },
                     child: Container(
                       margin: EdgeInsets.only(right: 20),
@@ -110,7 +114,7 @@ class _FoundPageState extends State<FoundPage> {
                         // height: 5,
                         // width: 5,
                         scale: 18,
-                        // color: Colors.black87,
+                        color: Colors.white,
                       ),
                     ),
                   ),
@@ -137,14 +141,16 @@ class _FoundPageState extends State<FoundPage> {
                         itemBuilder: (context, index) {
                           return GestureDetector(
                             onTap: () {
-                              Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) => Show_Item(
-                                          documentid: docId[index],
-                                          whichitem: 'FoundItems',
-                                        )),
-                              );
+                              {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                      builder: (context) => Show_Item(
+                                            documentid: docId[index],
+                                            whichitem: 'FoundItems',
+                                          )),
+                                );
+                              }
                             },
                             child: GettheData(
                               documentid: docId[index],

@@ -132,13 +132,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   //icons or image
-                  Image.asset(
-                    "assets/images/Sign up-pana.png",
-                    scale: 14,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+
                   //welcome message
                   const Text(
                     "Lets Create an Account for you",

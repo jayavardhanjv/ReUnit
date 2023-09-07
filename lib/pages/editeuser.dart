@@ -64,6 +64,8 @@ class _EditUserState extends State<EditUser> {
     // return docid;
   }
 
+  Future addimage() async {}
+
   @override
   void initState() {
     // TODO: implement initState
@@ -158,17 +160,20 @@ class _EditUserState extends State<EditUser> {
                         ),
                       ),
                     ),
-                    Positioned(
-                      bottom: 0,
-                      right: 0,
-                      child: Container(
-                        height: 35,
-                        width: 35,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.red[300],
+                    GestureDetector(
+                      onTap: () {},
+                      child: Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          height: 35,
+                          width: 35,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(100),
+                            color: Colors.red[300],
+                          ),
+                          child: Icon(LineAwesomeIcons.alternate_pencil),
                         ),
-                        child: Icon(LineAwesomeIcons.alternate_pencil),
                       ),
                     )
                   ],

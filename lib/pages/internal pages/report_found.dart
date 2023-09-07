@@ -30,7 +30,8 @@ class _Report_FoundState extends State<Report_Found> {
           "des": _dec.text,
           "address": _address.text,
           "phno": _phone.text,
-          "useruid": currentuser
+          "useruid": currentuser,
+          "date": Timestamp.fromDate(DateTime.now())
         })
         .then((snapshot) => print("User Added"))
         .catchError((onError) => print("error found"));

@@ -113,6 +113,7 @@ class _UserProfileState extends State<UserProfile> {
                   height: 30,
                 ),
                 Container(
+                  padding: EdgeInsets.all(8),
                   height: 700,
                   width: MediaQuery.of(context).size.width - 50,
                   decoration: BoxDecoration(
@@ -160,10 +161,11 @@ class _UserProfileState extends State<UserProfile> {
                         builder: (context, snapshot) {
                           return Text(
                             username,
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 26,
+                                fontSize: 20,
                                 fontFamily: "Poppins",
-                                fontWeight: FontWeight.w800),
+                                fontWeight: FontWeight.w400),
                           );
                         },
                       ),
@@ -176,8 +178,9 @@ class _UserProfileState extends State<UserProfile> {
                             AsyncSnapshot<dynamic> snapshot) {
                           return Text(
                             "Email:   ${useremail}",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontFamily: "Poppins",
                                 fontWeight: FontWeight.w400),
                           );
@@ -192,10 +195,11 @@ class _UserProfileState extends State<UserProfile> {
                             AsyncSnapshot<dynamic> snapshot) {
                           return Text(
                             "Address:   ${useraddress}",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 16,
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w400),
+                              fontSize: 14,
+                              fontFamily: "Poppins",
+                            ),
                           );
                         },
                       ),
@@ -208,8 +212,9 @@ class _UserProfileState extends State<UserProfile> {
                             AsyncSnapshot<dynamic> snapshot) {
                           return Text(
                             "Phno:   ${userph}",
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                                fontSize: 16,
+                                fontSize: 14,
                                 fontFamily: "Poppins",
                                 fontWeight: FontWeight.w400),
                           );
@@ -284,7 +289,7 @@ class _UserProfileState extends State<UserProfile> {
                                     Text(
                                       "Information",
                                       style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 18,
                                         fontWeight: FontWeight.w600,
                                         fontFamily: 'Poppins',
                                       ),
@@ -349,7 +354,7 @@ class _UserProfileState extends State<UserProfile> {
                                       "Logout",
                                       style: TextStyle(
                                           fontFamily: 'Poppins',
-                                          fontSize: 20,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.w600,
                                           color: Colors.blue),
                                     ),

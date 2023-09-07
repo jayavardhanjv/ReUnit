@@ -2,11 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gaming_accessories_rent_app/components/bigText.dart';
 import 'package:gaming_accessories_rent_app/components/report_iteam.dart';
+import 'package:gaming_accessories_rent_app/pages/internal%20pages/get_internal_data.dart';
+import 'package:gaming_accessories_rent_app/pages/internal%20pages/show_report.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
-
-import '../components/nav.dart';
 
 class LostPage extends StatefulWidget {
   const LostPage({super.key});
@@ -23,7 +22,7 @@ class _LostPageState extends State<LostPage> {
   Future getDocID() async {
     // final String currentuid = FirebaseAuth.instance.currentUser!.uid;
 
-    await FirebaseFirestore.instance.collection("FoundItems").get().then(
+    await FirebaseFirestore.instance.collection("LostItems").get().then(
           (snapshot) => snapshot.docs.forEach((element) {
             docId.add(element.reference.id);
           }),
@@ -41,6 +40,13 @@ class _LostPageState extends State<LostPage> {
     // TODO: implement initState
     super.initState();
     // getDocID();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    getDocID();
   }
 
   @override
@@ -129,7 +135,24 @@ class _LostPageState extends State<LostPage> {
                       return ListView.builder(
                         itemCount: docId.length,
                         itemBuilder: (context, index) {
-                          return ReportContiner();
+                          return GestureDetector(
+                            onTap: () {
+                              {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                      builder: (context) => Show_Item(
+                                            documentid: docId[index],
+                                            whichitem: 'LostItems',
+                                          )),
+                                );
+                              }
+                            },
+                            child: GettheData(
+                              documentid: docId[index],
+                              whichitem: 'LostItems',
+                            ),
+                          );
                         },
                       );
                     },

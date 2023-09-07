@@ -5,6 +5,8 @@ import 'package:gaming_accessories_rent_app/pages/home.dart';
 import 'package:gaming_accessories_rent_app/pages/lost_page.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:gaming_accessories_rent_app/pages/profile.dart';
+import 'package:gaming_accessories_rent_app/pages/yourreport.dart';
+// import 'package:gaming_accessories_rent_app/pages/yourreports.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class MainPage extends StatefulWidget {
@@ -18,7 +20,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  List Pages = [HomePage(), LostPage(), FoundPage(), UserProfile()];
+  List Pages = [HomePage(), LostPage(), FoundPage(), MyReport()];
   int currentindex = 0;
   void onTap(int index) {
     setState(() {
