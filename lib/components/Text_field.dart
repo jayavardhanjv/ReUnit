@@ -40,6 +40,7 @@ class MyTextField extends StatelessWidget {
           validator: RequiredValidator(errorText: "Required..*"),
           cursorColor: Colors.red[300],
           controller: controller,
+          autofocus: true,
           obscureText: obscureText,
           enableSuggestions: enableSuggestions,
           expands: expand,

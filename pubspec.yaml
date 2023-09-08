@@ -46,6 +46,7 @@ dependencies:
   line_awesome_flutter: ^2.0.0
   liquid_pull_to_refresh: ^3.0.1
   image_picker: ^1.0.4
+  firebase_storage: ^11.2.6
 
 
 
