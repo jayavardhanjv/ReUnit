@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:form_validator/form_validator.dart';
 
 class MyTextField extends StatelessWidget {
   MyTextField({
@@ -11,6 +13,8 @@ class MyTextField extends StatelessWidget {
     required this.Myicon,
     required this.Mykeybord,
     required this.expand,
+    // required this.validator,
+    // required this.inputFormatters,
   });
 
   final TextEditingController controller;
@@ -22,6 +26,8 @@ class MyTextField extends StatelessWidget {
   final IconData Myicon;
   final TextInputType Mykeybord;
   final bool expand;
+  // final String? Function(String?)? validator;
+  // final List<TextInputFormatter>? inputFormatters;
 
   final _formKey = GlobalKey<FormState>();
 
@@ -35,9 +41,10 @@ class MyTextField extends StatelessWidget {
       child: SizedBox(
         width: MediaQuery.of(context).size.width - 30,
         child: TextFormField(
+          // inputFormatters: inputFormatters,
           keyboardType: Mykeybord,
           // maxLines: 5,
-          validator: RequiredValidator(errorText: "Required..*"),
+          // validator: validator,
           cursorColor: Colors.red[300],
           controller: controller,
           autofocus: true,

@@ -10,19 +10,20 @@ import 'package:form_validator/form_validator.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/uitility.dart';
 import 'package:gaming_accessories_rent_app/pages/profile.dart';
+import 'package:gaming_accessories_rent_app/pages/test.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
-class EditUser extends StatefulWidget {
-  const EditUser({
+class MyEditUser extends StatefulWidget {
+  const MyEditUser({
     super.key,
   });
 
   @override
-  State<EditUser> createState() => _EditUserState();
+  State<MyEditUser> createState() => _MyEditUserState();
 }
 
-class _EditUserState extends State<EditUser> {
+class _MyEditUserState extends State<MyEditUser> {
   // final TextEditingController email;
   static late final TextEditingController email = TextEditingController();
   static late final TextEditingController address = TextEditingController();
@@ -92,6 +93,13 @@ class _EditUserState extends State<EditUser> {
     super.dispose();
   }
 
+  GlobalKey<FormState> _form = GlobalKey<FormState>();
+
+  void _validate() {
+    _form.currentState?.validate();
+  }
+
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,6 +157,7 @@ class _EditUserState extends State<EditUser> {
               ),
               child: Center(
                   child: Form(
+                key: _form,
                 child: Column(children: [
                   const SizedBox(
                     height: 30,
@@ -188,55 +197,18 @@ class _EditUserState extends State<EditUser> {
                   const SizedBox(
                     height: 30,
                   ),
+                  // need to add form field
                   MyTextField(
-                    expand: false,
-                    controller: username,
-                    hintText: "Enter the Username",
+                    // validator:
+                    //     ValidationBuilder().email().maxLength(50).build(),
+                    controller: email,
+                    hintText: '',
                     obscureText: false,
                     enableSuggestions: true,
                     Myicon: Icons.person,
-                    Mykeybord: TextInputType.text,
-                    // validator: ValidationBuilder()
-                    //     .minLength(minLength)
-                    //     .maxLength(50)
-                    //     .build(),
+                    Mykeybord: TextInputType.emailAddress,
+                    expand: false,
                     // inputFormatters: [],
-                  ),
-                  // const SizedBox(
-                  //   height: 15,
-                  // ),
-                  // MyTextField(
-                  //   expand: false,
-                  //   controller: _email,
-                  //   hintText: "Enter the Email",
-                  //   obscureText: false,
-                  //   enableSuggestions: true,
-                  //   Myicon: Icons.mail_outline,
-                  //   Mykeybord: TextInputType.emailAddress,
-                  // ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  MyTextField(
-                    expand: false,
-                    controller: phone,
-                    hintText: "Enter the Phone Number",
-                    obscureText: false,
-                    enableSuggestions: true,
-                    Myicon: Icons.mobile_friendly,
-                    Mykeybord: TextInputType.number,
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  MyTextField(
-                    expand: false,
-                    controller: address,
-                    hintText: "Enter the Address",
-                    obscureText: false,
-                    enableSuggestions: true,
-                    Myicon: Icons.location_city,
-                    Mykeybord: TextInputType.streetAddress,
                   ),
                   const SizedBox(
                     height: 30,
@@ -247,7 +219,14 @@ class _EditUserState extends State<EditUser> {
                     child: ElevatedButton(
                       onPressed: () {
                         // update();
-                        GetuserDoc();
+                        // GetuserDoc();
+                        // _validate();
+                        // Mytest();
+                        Navigator.of(context).push(
+                          MaterialPageRoute<void>(
+                            builder: (BuildContext context) => const Mytest(),
+                          ),
+                        );
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(255, 93, 78, 1),

@@ -4,8 +4,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gaming_accessories_rent_app/pages/edit2.dart';
 import 'package:gaming_accessories_rent_app/pages/editeuser.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
+import 'package:gaming_accessories_rent_app/pages/test.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 import '../components/bigText.dart';
@@ -228,11 +230,17 @@ class _UserProfileState extends State<UserProfile> {
                         height: 60,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              CupertinoPageRoute<void>(
+                            // Navigator.push(
+                            //   context,
+                            //   CupertinoPageRoute<void>(
+                            //     builder: (BuildContext context) =>
+                            //         const MyEditUser(),
+                            //   ),
+                            // );
+                            Navigator.of(context).push(
+                              MaterialPageRoute<void>(
                                 builder: (BuildContext context) =>
-                                    const EditUser(),
+                                    const Mytest(),
                               ),
                             );
                           },

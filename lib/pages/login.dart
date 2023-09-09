@@ -25,8 +25,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final emailTextController = TextEditingController();
-  final passwordTextController = TextEditingController();
+  var _formKey = GlobalKey<FormState>();
+  var isLoading = false;
+  final _email = TextEditingController();
+  final _password = TextEditingController();
   void signin() async {
     showDialog(
       context: context,
@@ -37,12 +39,11 @@ class _LoginPageState extends State<LoginPage> {
         ));
       },
     );
-    Timer(Duration(seconds: 2), () async {
-      Navigator.of(context).pop();
+    Timer(Duration(seconds: 3), () async {
       try {
         await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailTextController.text,
-          password: passwordTextController.text,
+          email: _email.text,
+          password: _password.text,
         );
       } on FirebaseAuthException catch (e) {
         if (e.code == 'network-request-failed') {
@@ -78,7 +79,21 @@ class _LoginPageState extends State<LoginPage> {
           showError(context, 'Some error in login', 'an error occred');
         }
       }
+      Navigator.of(context).pop();
     });
+  }
+
+  void _submit() {
+    final isValid = _formKey.currentState?.validate();
+    if (!isValid!) {
+      return;
+    }
+    if (isValid) {
+      // update();
+      signin();
+      print(FirebaseAuth.instance.currentUser!.emailVerified);
+    }
+    _formKey.currentState!.save();
   }
 
   @override
@@ -90,142 +105,207 @@ class _LoginPageState extends State<LoginPage> {
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: SingleChildScrollView(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    //icons or image
-                    Image.asset(
-                      "assets/images/Computer login-pana.png",
-                      scale: 10,
-                    ),
-
-                    //welcome message
-                    const Text(
-                      "Welcome Back, We Missed You!",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w400,
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      //icons or image
+                      Image.asset(
+                        "assets/images/Computer login-pana.png",
+                        scale: 10,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    //email field
-                    MyTextField(
-                      expand: false,
-                      controller: emailTextController,
-                      hintText: "Enter the  Email",
-                      obscureText: false,
-                      enableSuggestions: true,
-                      Myicon: Icons.mail_outline,
-                      Mykeybord: TextInputType.emailAddress,
-                    ),
 
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    //password field
-                    MyTextField(
-                      expand: false,
-                      controller: passwordTextController,
-                      hintText: "Enter the Password",
-                      obscureText: true,
-                      enableSuggestions: false,
-                      Myicon: Icons.remove_red_eye_outlined,
-                      Mykeybord: TextInputType.visiblePassword,
-                    ),
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            CupertinoPageRoute(
-                                builder: (context) =>
-                                    const ForgotPasswordPage()),
-                          );
-                        },
-                        child: const Text(
-                          "Forgot Password?",
-                          style: TextStyle(
-                              color: Color.fromRGBO(255, 93, 78, 1),
-                              fontWeight: FontWeight.w100,
-                              fontFamily: "Poppins"),
-                        ),
-                      ),
-                    ),
-
-                    //Signin Button
-                    MyButton(
-                      onTap: signin,
-                      text: 'Sign In',
-                    ),
-
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    const Text("Or Sign in with",
+                      //welcome message
+                      const Text(
+                        "Welcome Back, We Missed You!",
                         style: TextStyle(
                           color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                        )),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        AuthGoogle().SigninWithGoogle();
-                      },
-                      child: Container(
-                        height: 60,
-                        width: 60,
-                        decoration: const BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: Colors.white,
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black,
-                              offset: Offset(0, 2),
-                              blurRadius: 6,
-                            )
-                          ],
-                          image: DecorationImage(
-                            image: AssetImage("assets/google.png"),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      //email field
+                      TextFormField(
+                        keyboardType: TextInputType.emailAddress,
+                        // maxLines: 5,
+                        // validator: validator,
+                        cursorColor: Colors.red[300],
+                        controller: _email,
+                        // autofocus: true,
+                        obscureText: false,
+                        enableSuggestions: true,
+                        expands: false,
+                        decoration: InputDecoration(
+                            hintText: "Enter  the  Email",
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            focusColor: Colors.red[300],
+                            suffixIcon: Icon(Icons.person),
+                            suffixIconColor: Colors.grey,
+                            hintStyle: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              color: Colors.grey[500],
+                            )),
+                        // keyboardType: TextInputType.emailAddress,
+                        onFieldSubmitted: (value) {
+                          //Validator
+                        },
+                        validator: (value) {
+                          return vEmail(value);
+                        },
+                      ),
+
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      //password field
+                      TextFormField(
+                        keyboardType: TextInputType.visiblePassword,
+                        // maxLines: 5,
+                        // validator: validator,
+                        cursorColor: Colors.red[300],
+                        controller: _password,
+                        // autofocus: true,
+                        obscureText: false,
+                        enableSuggestions: true,
+                        expands: false,
+                        decoration: InputDecoration(
+                            hintText: "Enter  the  Password",
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.white,
+                              ),
+                            ),
+                            fillColor: Colors.grey.shade100,
+                            filled: true,
+                            focusColor: Colors.red[300],
+                            suffixIcon: Icon(Icons.lock),
+                            suffixIconColor: Colors.grey,
+                            hintStyle: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontSize: 16,
+                              color: Colors.grey[500],
+                            )),
+                        // keyboardType: TextInputType.emailAddress,
+                        onFieldSubmitted: (value) {
+                          //Validator
+                        },
+                        validator: (value) {
+                          return vPassword(value);
+                        },
+                      ),
+                      Align(
+                        alignment: Alignment.centerRight,
+                        child: TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) =>
+                                      const ForgotPasswordPage()),
+                            );
+                          },
+                          child: const Text(
+                            "Forgot Password?",
+                            style: TextStyle(
+                                color: Color.fromRGBO(255, 93, 78, 1),
+                                fontWeight: FontWeight.w100,
+                                fontFamily: "Poppins"),
                           ),
                         ),
                       ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    //register page
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text("Don't have an account?",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                            )),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        GestureDetector(
-                          onTap: widget.onTap,
-                          child: const Text(
-                            "Register Now",
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 93, 78, 1),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                      //Signin Button
+                      MyButton(
+                        onTap: _submit,
+                        text: 'Sign In',
+                      ),
+
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      const Text("Or Sign in with",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                          )),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          AuthGoogle().SigninWithGoogle();
+                        },
+                        child: Container(
+                          height: 60,
+                          width: 60,
+                          decoration: const BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black,
+                                offset: Offset(0, 2),
+                                blurRadius: 6,
+                              )
+                            ],
+                            image: DecorationImage(
+                              image: AssetImage("assets/google.png"),
                             ),
                           ),
                         ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      //register page
+
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text("Don't have an account?",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                              )),
+                          const SizedBox(
+                            width: 4,
+                          ),
+                          GestureDetector(
+                            onTap: widget.onTap,
+                            child: const Text(
+                              "Register Now",
+                              style: TextStyle(
+                                color: Color.fromRGBO(255, 93, 78, 1),
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               )),
         ),
@@ -261,4 +341,36 @@ class DialogExample extends StatelessWidget {
       child: const Text('Show Dialog'),
     );
   }
+}
+
+String? vEmail(value) {
+  if (value!.isEmpty ||
+      !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(value)) {
+    return 'Enter a valid email!';
+  }
+  return null;
+}
+
+String? vPassword(value) {
+  if (value!.isEmpty || value.length < 6) {
+    return 'Enter a valid password!';
+  }
+  return null;
+}
+
+String? vName(value) {
+  if (value!.isEmpty ||
+      !RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$")
+          .hasMatch(value)) {
+    return 'Enter a valid name!';
+  }
+  return null;
+}
+
+String? vPhone(value) {
+  if (value!.isEmpty || !RegExp(r"^\+?0[0-9]{10}$").hasMatch(value)) {
+    return 'Enter a valid PhoneNo!';
+  }
+  return null;
 }
