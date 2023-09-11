@@ -37,7 +37,7 @@ class MyTextField extends StatelessWidget {
     // kype = type;
     // var kype;
     return Form(
-      key: _formKey,
+      // key: _formKey,
       child: SizedBox(
         width: MediaQuery.of(context).size.width - 30,
         child: TextFormField(
@@ -47,7 +47,7 @@ class MyTextField extends StatelessWidget {
           // validator: validator,
           cursorColor: Colors.red[300],
           controller: controller,
-          autofocus: true,
+          // autofocus: true,
           obscureText: obscureText,
           enableSuggestions: enableSuggestions,
           expands: expand,

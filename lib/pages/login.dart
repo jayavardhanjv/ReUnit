@@ -91,7 +91,7 @@ class _LoginPageState extends State<LoginPage> {
     if (isValid) {
       // update();
       signin();
-      print(FirebaseAuth.instance.currentUser!.emailVerified);
+      // print(FirebaseAuth.instance.currentUser!.emailVerified);
     }
     _formKey.currentState!.save();
   }
@@ -158,7 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                             suffixIconColor: Colors.grey,
                             hintStyle: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 16,
+                              fontSize: 13,
                               color: Colors.grey[500],
                             )),
                         // keyboardType: TextInputType.emailAddress,
@@ -203,7 +203,7 @@ class _LoginPageState extends State<LoginPage> {
                             suffixIconColor: Colors.grey,
                             hintStyle: TextStyle(
                               fontFamily: 'Poppins',
-                              fontSize: 16,
+                              fontSize: 13,
                               color: Colors.grey[500],
                             )),
                         // keyboardType: TextInputType.emailAddress,

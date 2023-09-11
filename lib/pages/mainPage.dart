@@ -11,6 +11,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
+  // final int myindex;
   void logout() {
     FirebaseAuth.instance.signOut();
   }

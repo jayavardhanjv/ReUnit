@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/report_iteam.dart';
 import 'package:gaming_accessories_rent_app/pages/internal%20pages/get_internal_data.dart';
 import 'package:gaming_accessories_rent_app/pages/internal%20pages/show_report.dart';
+import 'package:gaming_accessories_rent_app/pages/internal%20pages/show_report_myreport.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 
 class MyReport extends StatefulWidget {
@@ -143,13 +144,23 @@ class _MyReportState extends State<MyReport> {
                             onTap: () {
                               {
                                 Navigator.push(
-                                  context,
-                                  CupertinoPageRoute(
-                                      builder: (context) => Show_Item(
-                                            documentid: docId[index],
-                                            whichitem: 'FoundItems',
-                                          )),
-                                );
+                                    context,
+                                    CupertinoPageRoute(
+                                        builder: (context) => Show_myiem(
+                                              documentid: docId[index],
+                                              whichitem: 'FoundItems',
+                                            )));
+
+                                // );
+                                // Navigator.push(
+                                //   context,
+                                //   CupertinoPageRoute(
+                                //     builder: (context) => Show_myiem(
+                                //       documentid: docId[index],
+                                //       whichitem: 'FoundItems',
+                                //     ),
+                                //   ),
+                                // ).then((_) => setState(() {}));
                               }
                             },
                             child: GettheData(

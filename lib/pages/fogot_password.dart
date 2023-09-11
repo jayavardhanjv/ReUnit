@@ -69,58 +69,61 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //icons or image
-                  Image.asset(
-                    "assets/images/Forgot password-pana.png",
-                  ),
-                  const SizedBox(
-                    height: 30,
-                  ),
-                  //welcome message
-                  const Text(
-                    "Enter the email associated with your account to change your password.",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
+      body: SingleChildScrollView(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Center(
+            child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //icons or image
+                    Image.asset(
+                      "assets/images/Forgot password-pana.png",
                     ),
-                  ),
-                  const SizedBox(
-                    height: 50,
-                  ),
-                  //email field
-                  MyTextField(
-                    expand: false,
-                    controller: emailTextController,
-                    hintText: "Enter the  Email",
-                    obscureText: false,
-                    enableSuggestions: true,
-                    Myicon: Icons.mail_outline_outlined,
-                    Mykeybord: TextInputType.emailAddress,
-                  ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    //welcome message
+                    const Text(
+                      "Enter the email associated with your account to change your password.",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 50,
+                    ),
+                    //email field
+                    MyTextField(
+                      expand: false,
+                      controller: emailTextController,
+                      hintText: "Enter the  Email",
+                      obscureText: false,
+                      enableSuggestions: true,
+                      Myicon: Icons.mail_outline_outlined,
+                      Mykeybord: TextInputType.emailAddress,
+                    ),
 
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  //password field
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    //password field
 
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  //Signin Button
-                  MyButton(
-                    onTap: signin,
-                    text: 'Send mail',
-                  ),
-                ],
-              )),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    //Signin Button
+                    MyButton(
+                      onTap: signin,
+                      text: 'Send mail',
+                    ),
+                  ],
+                )),
+          ),
         ),
       ),
     );

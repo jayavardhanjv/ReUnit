@@ -25,7 +25,7 @@ class _UserProfileState extends State<UserProfile> {
   var identifier = new Map();
   String name = '';
   final String joined_data = FirebaseAuth.instance.currentUser!.uid;
-  Future getDocID() async {
+  Future _getDocID() async {
     final String currentuid = FirebaseAuth.instance.currentUser!.uid;
 
     await FirebaseFirestore.instance
@@ -53,7 +53,14 @@ class _UserProfileState extends State<UserProfile> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    getDocID();
+    _getDocID();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _getDocID();
   }
 
   // final username = FirebaseFirestore.instance
@@ -68,7 +75,7 @@ class _UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder(
-        future: getDocID(),
+        future: _getDocID(),
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           return SingleChildScrollView(
             child: Column(
@@ -159,7 +166,7 @@ class _UserProfileState extends State<UserProfile> {
                         height: 20,
                       ),
                       FutureBuilder(
-                        future: getDocID(),
+                        future: _getDocID(),
                         builder: (context, snapshot) {
                           return Text(
                             username,
@@ -175,7 +182,7 @@ class _UserProfileState extends State<UserProfile> {
                         height: 15,
                       ),
                       FutureBuilder(
-                        future: getDocID(),
+                        future: _getDocID(),
                         builder: (BuildContext context,
                             AsyncSnapshot<dynamic> snapshot) {
                           return Text(
@@ -192,7 +199,7 @@ class _UserProfileState extends State<UserProfile> {
                         height: 15,
                       ),
                       FutureBuilder(
-                        future: getDocID(),
+                        future: _getDocID(),
                         builder: (BuildContext context,
                             AsyncSnapshot<dynamic> snapshot) {
                           return Text(
@@ -209,7 +216,7 @@ class _UserProfileState extends State<UserProfile> {
                         height: 15,
                       ),
                       FutureBuilder(
-                        future: getDocID(),
+                        future: _getDocID(),
                         builder: (BuildContext context,
                             AsyncSnapshot<dynamic> snapshot) {
                           return Text(
@@ -230,19 +237,17 @@ class _UserProfileState extends State<UserProfile> {
                         height: 60,
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //   context,
-                            //   CupertinoPageRoute<void>(
+                            Navigator.push(
+                              context,
+                              CupertinoPageRoute(
+                                  builder: (context) => EditUser()),
+                            ).then((value) => setState(() {}));
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute<void>(
                             //     builder: (BuildContext context) =>
-                            //         const MyEditUser(),
+                            //         const Mytest(),
                             //   ),
                             // );
-                            Navigator.of(context).push(
-                              MaterialPageRoute<void>(
-                                builder: (BuildContext context) =>
-                                    const Mytest(),
-                              ),
-                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor:

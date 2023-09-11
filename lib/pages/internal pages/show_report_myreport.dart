@@ -2,17 +2,39 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
+import 'package:gaming_accessories_rent_app/pages/mainPage.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
+import 'package:gaming_accessories_rent_app/pages/yourreport.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
-class Show_Item extends StatelessWidget {
+class Show_myiem extends StatelessWidget {
   final String documentid;
   final String whichitem;
 
-  Show_Item({
+  Show_myiem({
     required this.documentid,
     required this.whichitem,
   });
+
+  get context => null;
+
+  // get context => null;
+  delete() {
+    try {
+      FirebaseFirestore.instance
+          .collection(whichitem)
+          .doc(documentid)
+          .delete()
+          .then(
+            (doc) => print("Document deleted"),
+            onError: (e) => print("Error updating document $e"),
+          );
+      // Navigator.of(context).pop();
+      // Navigator.of(context).pop();
+    } catch (e) {
+      print("error");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -186,11 +208,52 @@ class Show_Item extends StatelessWidget {
                                   ),
                                 ),
                                 Container(
+                                    width:
+                                        MediaQuery.of(context).size.width - 60,
+                                    decoration: BoxDecoration(),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        delete();
+                                        Navigator.pushAndRemoveUntil(
+                                          context,
+                                          CupertinoPageRoute(
+                                              builder: (context) => MainPage()),
+                                          ModalRoute.withName('/'),
+                                        );
+                                      },
+                                      child: Container(
+                                        padding: const EdgeInsets.all(25),
+                                        decoration: BoxDecoration(
+                                          boxShadow: const [
+                                            BoxShadow(
+                                              color: Colors.black,
+                                              offset: Offset(0, 1),
+                                              blurRadius: 1,
+                                            )
+                                          ],
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "DELETE",
+                                            style: TextStyle(
+                                              color: Color.fromRGBO(
+                                                  255, 93, 78, 1),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    )),
+                                Container(
                                   width: MediaQuery.of(context).size.width - 60,
                                   decoration: BoxDecoration(),
                                   child: MyButton(
                                     onTap: () {},
-                                    text: 'Connect +',
+                                    text: 'ReUnited',
                                   ),
                                 )
                               ],

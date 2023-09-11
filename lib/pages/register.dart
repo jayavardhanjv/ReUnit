@@ -154,7 +154,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     const Text(
                       "Lets Create an Account for you",
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 15,
                         fontWeight: FontWeight.w400,
                         color: Colors.black,
                       ),
@@ -192,7 +192,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           suffixIconColor: Colors.grey,
                           hintStyle: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 14,
+                            fontSize: 13,
                             color: Colors.grey[500],
                           )),
                       // keyboardType: TextInputType.emailAddress,
@@ -235,7 +235,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           suffixIconColor: Colors.grey,
                           hintStyle: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 14,
+                            fontSize: 13,
                             color: Colors.grey[500],
                           )),
                       // keyboardType: TextInputType.emailAddress,
@@ -278,7 +278,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           suffixIconColor: Colors.grey,
                           hintStyle: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 14,
+                            fontSize: 13,
                             color: Colors.grey[500],
                           )),
                       // keyboardType: TextInputType.emailAddress,
@@ -321,7 +321,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           suffixIconColor: Colors.grey,
                           hintStyle: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 14,
+                            fontSize: 13,
                             color: Colors.grey[500],
                           )),
                       // keyboardType: TextInputType.emailAddress,
@@ -365,7 +365,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           suffixIconColor: Colors.grey,
                           hintStyle: TextStyle(
                             fontFamily: 'Poppins',
-                            fontSize: 14,
+                            fontSize: 13,
                             color: Colors.grey[500],
                           )),
                       // keyboardType: TextInputType.emailAddress,

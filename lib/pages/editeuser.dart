@@ -10,6 +10,7 @@ import 'package:form_validator/form_validator.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/uitility.dart';
 import 'package:gaming_accessories_rent_app/pages/profile.dart';
+import 'package:gaming_accessories_rent_app/pages/register.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -24,20 +25,20 @@ class EditUser extends StatefulWidget {
 
 class _EditUserState extends State<EditUser> {
   // final TextEditingController email;
-  static late final TextEditingController email = TextEditingController();
-  static late final TextEditingController address = TextEditingController();
-  static late final TextEditingController phone = TextEditingController();
-  static late final TextEditingController username = TextEditingController();
+  late final TextEditingController _email = TextEditingController();
+  late final TextEditingController _address = TextEditingController();
+  late final TextEditingController _phone = TextEditingController();
+  late final TextEditingController _username = TextEditingController();
 
   FirebaseFirestore db = FirebaseFirestore.instance;
   String docid = '';
 
   Future GetuserDoc() async {
     FirebaseFirestore.instance.collection("UserData").doc(docid).update({
-      'name': username.text,
-      'address': address.text,
-      'phoneNo': phone.text,
-      // 'email': email.text
+      'name': _username.text,
+      'address': _address.text,
+      'phoneNo': _phone.text,
+      // '_': _.text
     }).then((value) => print("DocumentSnapshot successfully updated!"),
         onError: (e) => print("Error updating document $e"));
     ;
@@ -84,13 +85,40 @@ class _EditUserState extends State<EditUser> {
     // TODO: implement initState
     super.initState();
     update();
+    _image;
+    _email;
+    _address;
+    _phone;
+    _username;
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+    update();
+    _image;
+    _email;
+    _address;
+    _phone;
+    _username;
   }
+
+  void _submit() {
+    final isValid = _formKey.currentState?.validate();
+    if (!isValid!) {
+      return;
+    }
+    if (isValid) {
+      // update();
+      GetuserDoc();
+      // print(FirebaseAuth.instance.currentUser!._Verified);
+    }
+    _formKey.currentState!.save();
+  }
+
+  var _formKey = GlobalKey<FormState>();
+  var isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +142,7 @@ class _EditUserState extends State<EditUser> {
                     },
                     child: Image.asset(
                       "assets/icons/left.png",
-                      scale: 16,
+                      scale: 14,
                       color: Colors.black87,
                     ),
                   ),
@@ -149,10 +177,12 @@ class _EditUserState extends State<EditUser> {
               ),
               child: Center(
                   child: Form(
+                key: _formKey,
                 child: Column(children: [
                   const SizedBox(
                     height: 30,
                   ),
+
                   Stack(
                     children: [
                       _image != null
@@ -188,26 +218,52 @@ class _EditUserState extends State<EditUser> {
                   const SizedBox(
                     height: 30,
                   ),
-                  MyTextField(
-                    expand: false,
-                    controller: username,
-                    hintText: "Enter the Username",
+                  TextFormField(
+                    keyboardType: TextInputType.name,
+                    // maxLines: 5,
+                    // validator: validator,
+                    cursorColor: Colors.red[300],
+                    controller: _username,
+                    // autofocus: true,
                     obscureText: false,
                     enableSuggestions: true,
-                    Myicon: Icons.person,
-                    Mykeybord: TextInputType.text,
-                    // validator: ValidationBuilder()
-                    //     .minLength(minLength)
-                    //     .maxLength(50)
-                    //     .build(),
-                    // inputFormatters: [],
+                    expands: false,
+                    decoration: InputDecoration(
+                        hintText: "Enter  the  Name",
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        fillColor: Colors.grey.shade100,
+                        filled: true,
+                        focusColor: Colors.red[300],
+                        suffixIcon: Icon(Icons.person),
+                        suffixIconColor: Colors.grey,
+                        hintStyle: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 14,
+                          color: Colors.grey[500],
+                        )),
+                    // keyboardType: TextInputType._Address,
+                    onFieldSubmitted: (value) {
+                      //Validator
+                    },
+                    validator: (value) {
+                      return vAddress(value);
+                    },
                   ),
                   // const SizedBox(
                   //   height: 15,
                   // ),
                   // MyTextField(
                   //   expand: false,
-                  //   controller: _email,
+                  //   controller: __,
                   //   hintText: "Enter the Email",
                   //   obscureText: false,
                   //   enableSuggestions: true,
@@ -217,26 +273,88 @@ class _EditUserState extends State<EditUser> {
                   const SizedBox(
                     height: 15,
                   ),
-                  MyTextField(
-                    expand: false,
-                    controller: phone,
-                    hintText: "Enter the Phone Number",
+                  TextFormField(
+                    keyboardType: TextInputType.number,
+                    // maxLines: 5,
+                    // validator: validator,
+                    cursorColor: Colors.red[300],
+                    controller: _phone,
+                    // autofocus: true,
                     obscureText: false,
                     enableSuggestions: true,
-                    Myicon: Icons.mobile_friendly,
-                    Mykeybord: TextInputType.number,
+                    expands: false,
+                    decoration: InputDecoration(
+                        hintText: "Enter  the  PhoneNo",
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        fillColor: Colors.grey.shade100,
+                        filled: true,
+                        focusColor: Colors.red[300],
+                        suffixIcon: Icon(Icons.phone_android),
+                        suffixIconColor: Colors.grey,
+                        hintStyle: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 14,
+                          color: Colors.grey[500],
+                        )),
+                    // keyboardType: TextInputType.emailAddress,
+                    onFieldSubmitted: (value) {
+                      //Validator
+                    },
+                    validator: (value) {
+                      return vPhone(value);
+                    },
                   ),
                   const SizedBox(
                     height: 15,
                   ),
-                  MyTextField(
-                    expand: false,
-                    controller: address,
-                    hintText: "Enter the Address",
+                  TextFormField(
+                    keyboardType: TextInputType.text,
+                    // maxLines: 5,
+                    // validator: validator,
+                    cursorColor: Colors.red[300],
+                    controller: _address,
+                    // autofocus: true,
                     obscureText: false,
                     enableSuggestions: true,
-                    Myicon: Icons.location_city,
-                    Mykeybord: TextInputType.streetAddress,
+                    expands: false,
+                    decoration: InputDecoration(
+                        hintText: "Enter  the  Address",
+                        enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color: Colors.white,
+                          ),
+                        ),
+                        fillColor: Colors.grey.shade100,
+                        filled: true,
+                        focusColor: Colors.red[300],
+                        suffixIcon: Icon(Icons.navigation_outlined),
+                        suffixIconColor: Colors.grey,
+                        hintStyle: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontSize: 14,
+                          color: Colors.grey[500],
+                        )),
+                    // keyboardType: TextInputType.emailAddress,
+                    onFieldSubmitted: (value) {
+                      //Validator
+                    },
+                    validator: (value) {
+                      return vAddress(value);
+                    },
                   ),
                   const SizedBox(
                     height: 30,
@@ -247,7 +365,7 @@ class _EditUserState extends State<EditUser> {
                     child: ElevatedButton(
                       onPressed: () {
                         // update();
-                        GetuserDoc();
+                        _submit();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color.fromRGBO(255, 93, 78, 1),
@@ -269,4 +387,36 @@ class _EditUserState extends State<EditUser> {
       ),
     );
   }
+}
+
+String? vEmail(value) {
+  if (value!.isEmpty ||
+      !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(value)) {
+    return 'Enter a valid email!';
+  }
+  return null;
+}
+
+String? vPassword(value) {
+  if (value!.isEmpty || value.length < 6) {
+    return 'Enter a valid password!';
+  }
+  return null;
+}
+
+String? vName(value) {
+  if (value!.isEmpty ||
+      !RegExp(r"^\s*([A-Za-z]{1,}([\.,] |[-']| ))+[A-Za-z]+\.?\s*$")
+          .hasMatch(value)) {
+    return 'Enter a valid name!';
+  }
+  return null;
+}
+
+String? vPhone(value) {
+  if (value!.isEmpty || !RegExp(r"^[0-9]{10}$").hasMatch(value)) {
+    return 'Enter a valid 10-digit phone number!';
+  }
+  return null;
 }
