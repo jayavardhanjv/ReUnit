@@ -142,7 +142,7 @@ class _UserProfileState extends State<UserProfile> {
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(180),
                               child: Image.asset(
-                                "assets/images/photo.jpg",
+                                "assets/images/no_image.png",
                                 fit: BoxFit.cover,
                               ),
                             ),

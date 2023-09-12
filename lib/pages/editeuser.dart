@@ -1,9 +1,11 @@
 // import 'dart:async';
 import 'dart:async';
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validator/form_validator.dart';
@@ -38,6 +40,7 @@ class _EditUserState extends State<EditUser> {
       'name': _username.text,
       'address': _address.text,
       'phoneNo': _phone.text,
+      'profile image': imageUrl,
       // '_': _.text
     }).then((value) => print("DocumentSnapshot successfully updated!"),
         onError: (e) => print("Error updating document $e"));
@@ -71,13 +74,34 @@ class _EditUserState extends State<EditUser> {
   }
 
   Uint8List? _image;
-  Future addimage() async {
+  late File file;
+  late String imageUrl;
+  Future<void> addImage() async {
     try {
-      Uint8List img = await MyImagPicker(ImageSource.gallery);
-      _image = img;
+      final imagePicker = ImagePicker();
+      final XFile? image =
+          await imagePicker.pickImage(source: ImageSource.gallery);
+
+      if (image != null) {
+        _image = await image.readAsBytes();
+        setState(() {
+          file = File(image.path);
+          uploadProfileImage();
+        });
+      }
     } catch (e) {
-      print("error");
+      print("Error: $e");
     }
+  }
+
+  final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+  uploadProfileImage() async {
+    Reference reference =
+        FirebaseStorage.instance.ref().child('profileImage/${currentuid}');
+    UploadTask uploadTask = reference.putFile(file);
+    TaskSnapshot snapshot = await uploadTask;
+    imageUrl = await snapshot.ref.getDownloadURL();
+    print(imageUrl);
   }
 
   @override
@@ -197,7 +221,7 @@ class _EditUserState extends State<EditUser> {
                             ),
                       GestureDetector(
                         onTap: () {
-                          addimage();
+                          addImage();
                         },
                         child: Positioned(
                           bottom: 50,

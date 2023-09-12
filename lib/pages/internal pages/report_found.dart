@@ -1,14 +1,19 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:gaming_accessories_rent_app/addons/uid.dart';
 import 'package:gaming_accessories_rent_app/components/Text_field.dart';
 import 'package:gaming_accessories_rent_app/components/description.dart';
 import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:gaming_accessories_rent_app/pages/register.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class Report_Found extends StatefulWidget {
@@ -34,7 +39,9 @@ class _Report_FoundState extends State<Report_Found> {
           "address": _address.text,
           "phno": _phone.text,
           "useruid": currentuser,
-          "date": Timestamp.fromDate(DateTime.now())
+          "date": Timestamp.fromDate(DateTime.now()),
+          "image": imageUrl,
+          "imagestid": _imageid,
         })
         .then((snapshot) => print("User Added"))
         .catchError((onError) => print("error found"));
@@ -53,6 +60,8 @@ class _Report_FoundState extends State<Report_Found> {
     });
   }
 
+  late String _imageid;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -61,6 +70,7 @@ class _Report_FoundState extends State<Report_Found> {
     _address = TextEditingController();
     _phone = TextEditingController();
     _username = TextEditingController();
+    _imageid = generateUniqueId();
   }
 
   @override
@@ -84,6 +94,37 @@ class _Report_FoundState extends State<Report_Found> {
       // print(FirebaseAuth.instance.currentUser!.emailVerified);
     }
     _formKey.currentState!.save();
+  }
+
+  Uint8List? _image;
+  late File file;
+  late String imageUrl;
+  Future<void> addImage() async {
+    try {
+      final imagePicker = ImagePicker();
+      final XFile? image =
+          await imagePicker.pickImage(source: ImageSource.gallery);
+
+      if (image != null) {
+        _image = await image.readAsBytes();
+        setState(() {
+          file = File(image.path);
+          uploadProfileImage();
+        });
+      }
+    } catch (e) {
+      print("Error: $e");
+    }
+  }
+
+  final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+  uploadProfileImage() async {
+    Reference reference =
+        FirebaseStorage.instance.ref().child('FoundItems/${_imageid}');
+    UploadTask uploadTask = reference.putFile(file);
+    TaskSnapshot snapshot = await uploadTask;
+    imageUrl = await snapshot.ref.getDownloadURL();
+    print(imageUrl);
   }
 
   @override
@@ -177,6 +218,47 @@ class _Report_FoundState extends State<Report_Found> {
                           fontSize: 17,
                           overflow: TextOverflow.clip,
                         ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: 200,
+                    width: MediaQuery.of(context).size.width - 50,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                    ),
+                    child: _image != null
+                        ? Image.file(file)
+                        : Image.asset(
+                            "assets/images/no_image.png",
+                            fit: BoxFit.cover,
+                          ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   CupertinoPageRoute<void>(
+                      //     builder: (BuildContext context) => const EditUser(),
+                      // ),
+                      // );
+                      addImage();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color.fromRGBO(255, 93, 78, 1),
+                      shape: StadiumBorder(),
+                    ),
+                    child: Text(
+                      "Upload Image",
+                      style: TextStyle(
+                        fontFamily: "Poppins",
+                        fontSize: 14,
                       ),
                     ),
                   ),

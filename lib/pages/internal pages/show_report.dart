@@ -17,6 +17,7 @@ class Show_Item extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     try {
+      String _imagedata;
       CollectionReference reports =
           FirebaseFirestore.instance.collection(whichitem);
       return FutureBuilder<DocumentSnapshot>(
@@ -25,6 +26,12 @@ class Show_Item extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
+            try {
+              _imagedata = data["image"];
+            } catch (e) {
+              _imagedata = "assets/images/no_image.png";
+            }
+
             return Scaffold(
               body: SingleChildScrollView(
                 child: Column(
@@ -115,8 +122,8 @@ class Show_Item extends StatelessWidget {
                                 ],
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.grey[600]),
-                            child: Image.asset(
-                              "assets/images/ell.jpg",
+                            child: Image.network(
+                              _imagedata,
                               alignment: Alignment.center,
                               fit: BoxFit.contain,
                             ),

@@ -36,9 +36,11 @@ class Show_myiem extends StatelessWidget {
     }
   }
 
+  // String reportimage;
   @override
   Widget build(BuildContext context) {
     try {
+      String _imagedata;
       CollectionReference reports =
           FirebaseFirestore.instance.collection(whichitem);
       return FutureBuilder<DocumentSnapshot>(
@@ -47,6 +49,8 @@ class Show_myiem extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
+            _imagedata = data["image"];
+            // reportimage = data["image"];
             return Scaffold(
               body: SingleChildScrollView(
                 child: Column(
@@ -121,28 +125,27 @@ class Show_myiem extends StatelessWidget {
                             height: 20,
                           ),
                           Container(
-                            height: 250,
-                            width: MediaQuery.of(context).size.width - 30,
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.grey,
-                                    blurRadius: 5.0, // soften the shadow
-                                    spreadRadius: 2.0, //extend the shadow
-                                    offset: Offset(
-                                      3.0, // Move to right 5  horizontally
-                                      3.0, // Move to bottom 5 Vertically
-                                    ),
-                                  )
-                                ],
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.grey[600]),
-                            child: Image.asset(
-                              "assets/images/ell.jpg",
-                              alignment: Alignment.center,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
+                              height: 250,
+                              width: MediaQuery.of(context).size.width - 30,
+                              decoration: BoxDecoration(
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey,
+                                      blurRadius: 5.0, // soften the shadow
+                                      spreadRadius: 2.0, //extend the shadow
+                                      offset: Offset(
+                                        3.0, // Move to right 5  horizontally
+                                        3.0, // Move to bottom 5 Vertically
+                                      ),
+                                    )
+                                  ],
+                                  borderRadius: BorderRadius.circular(20),
+                                  color: Colors.grey[600]),
+                              child: Image.network(
+                                _imagedata,
+                                alignment: Alignment.center,
+                                fit: BoxFit.contain,
+                              )),
                           SizedBox(
                             height: 30,
                           ),

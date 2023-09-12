@@ -13,6 +13,7 @@ class GettheData extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     try {
+      String _imagedata;
       CollectionReference reports =
           FirebaseFirestore.instance.collection(whichitem);
       return FutureBuilder<DocumentSnapshot>(
@@ -21,6 +22,11 @@ class GettheData extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
+            try {
+              _imagedata = data["image"];
+            } catch (e) {
+              _imagedata = "assets/images/no_image.png";
+            }
             return Expanded(
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -51,8 +57,8 @@ class GettheData extends StatelessWidget {
                       ),
                       width: MediaQuery.of(context).size.width * 0.3,
                       height: 230,
-                      child: Image.asset(
-                        "assets/images/photo.jpg",
+                      child: Image.network(
+                        _imagedata,
                         alignment: Alignment.center,
                         fit: BoxFit.contain,
                       ),
