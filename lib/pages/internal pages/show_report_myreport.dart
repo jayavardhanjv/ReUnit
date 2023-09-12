@@ -40,7 +40,6 @@ class Show_myiem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     try {
-      String _imagedata;
       CollectionReference reports =
           FirebaseFirestore.instance.collection(whichitem);
       return FutureBuilder<DocumentSnapshot>(
@@ -49,7 +48,6 @@ class Show_myiem extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
-            _imagedata = data["image"];
             // reportimage = data["image"];
             return Scaffold(
               body: SingleChildScrollView(
@@ -141,8 +139,10 @@ class Show_myiem extends StatelessWidget {
                                   ],
                                   borderRadius: BorderRadius.circular(20),
                                   color: Colors.grey[600]),
-                              child: Image.network(
-                                _imagedata,
+                              child: Image.asset(
+                                data["image"] == null
+                                    ? "assets/images/no_image.png"
+                                    : data["image"],
                                 alignment: Alignment.center,
                                 fit: BoxFit.contain,
                               )),

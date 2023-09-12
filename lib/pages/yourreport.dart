@@ -8,6 +8,8 @@ import 'package:gaming_accessories_rent_app/pages/internal%20pages/show_report.d
 import 'package:gaming_accessories_rent_app/pages/internal%20pages/show_report_myreport.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 
+enum WidgetMaker { found, lost }
+
 class MyReport extends StatefulWidget {
   const MyReport({super.key});
 
@@ -20,11 +22,25 @@ class _MyReportState extends State<MyReport> {
   // var identifier = new Map();
   String name = '';
   // final String joined_data = FirebaseAuth.instance.currentUser!.uid;
-  Future getDocID() async {
+  Future getDocIDFound() async {
     final String currentuid = FirebaseAuth.instance.currentUser!.uid;
 
     await FirebaseFirestore.instance
         .collection("FoundItems")
+        .where("useruid", isEqualTo: currentuid)
+        .get()
+        .then(
+          (snapshot) => snapshot.docs.forEach((element) {
+            docId.add(element.reference.id);
+          }),
+        );
+  }
+
+  Future getDocIDLost() async {
+    final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+
+    await FirebaseFirestore.instance
+        .collection("LostItems")
         .where("useruid", isEqualTo: currentuid)
         .get()
         .then(
@@ -51,8 +67,11 @@ class _MyReportState extends State<MyReport> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    getDocID();
+    getDocIDFound();
+    getDocIDLost();
   }
+
+  WidgetMaker selectedwidgetmaker = WidgetMaker.found;
 
   @override
   Widget build(BuildContext context) {
@@ -123,60 +142,166 @@ class _MyReportState extends State<MyReport> {
               ),
             ),
             Container(
-              height: 703,
-              decoration: BoxDecoration(
-                color: Colors.white70,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Column(
+              height: 50,
+              width: MediaQuery.of(context).size.width - 30,
+              // color: Colors.red,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Expanded(
-                      child: FutureBuilder(
-                    future: getDocID(),
-                    builder: (context, snapshot) {
-                      return ListView.builder(
-                        itemCount: docId.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              {
-                                Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (context) => Show_myiem(
-                                              documentid: docId[index],
-                                              whichitem: 'FoundItems',
-                                            )));
-
-                                // );
-                                // Navigator.push(
-                                //   context,
-                                //   CupertinoPageRoute(
-                                //     builder: (context) => Show_myiem(
-                                //       documentid: docId[index],
-                                //       whichitem: 'FoundItems',
-                                //     ),
-                                //   ),
-                                // ).then((_) => setState(() {}));
-                              }
-                            },
-                            child: GettheData(
-                              documentid: docId[index],
-                              whichitem: 'FoundItems',
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  )),
+                  ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedwidgetmaker = WidgetMaker.found;
+                        });
+                      },
+                      child: Text("Found")),
+                  ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          selectedwidgetmaker = WidgetMaker.lost;
+                        });
+                      },
+                      child: Text("Lost")),
                 ],
               ),
+            ),
+            Container(
+              // width: MediaQuery.of(context).size.width - 40,
+              child: getCustomContiner(),
+            ),
+            Container(
+              height: 250,
+              width: 300,
+              // child: getCustomContiner(),
             )
           ],
         ),
+      ),
+    );
+  }
+
+  Widget getCustomContiner() {
+    switch (selectedwidgetmaker) {
+      case WidgetMaker.found:
+        return getFoundContiner();
+      case WidgetMaker.lost:
+        return getLostContiner();
+
+      // break;
+      default:
+        getFoundContiner();
+    }
+    return getCustomContiner();
+  }
+
+  Widget getFoundContiner() {
+    return Container(
+      height: 703,
+      decoration: BoxDecoration(
+        color: Colors.white70,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          Expanded(
+              child: FutureBuilder(
+            future: getDocIDFound(),
+            builder: (context, snapshot) {
+              return ListView.builder(
+                itemCount: docId.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => Show_myiem(
+                                      documentid: docId[index],
+                                      whichitem: 'FoundItems',
+                                    )));
+
+                        // );
+                        // Navigator.push(
+                        //   context,
+                        //   CupertinoPageRoute(
+                        //     builder: (context) => Show_myiem(
+                        //       documentid: docId[index],
+                        //       whichitem: 'FoundItems',
+                        //     ),
+                        //   ),
+                        // ).then((_) => setState(() {}));
+                      }
+                    },
+                    child: GettheData(
+                      documentid: docId[index],
+                      whichitem: 'FoundItems',
+                    ),
+                  );
+                },
+              );
+            },
+          )),
+        ],
+      ),
+    );
+  }
+
+  Widget getLostContiner() {
+    return Container(
+      height: 703,
+      decoration: BoxDecoration(
+        color: Colors.white70,
+        borderRadius: BorderRadius.circular(30),
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          Expanded(
+              child: FutureBuilder(
+            future: getDocIDLost(),
+            builder: (context, snapshot) {
+              return ListView.builder(
+                itemCount: docId.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      {
+                        Navigator.push(
+                            context,
+                            CupertinoPageRoute(
+                                builder: (context) => Show_myiem(
+                                      documentid: docId[index],
+                                      whichitem: 'LostItems',
+                                    )));
+
+                        // );
+                        // Navigator.push(
+                        //   context,
+                        //   CupertinoPageRoute(
+                        //     builder: (context) => Show_myiem(
+                        //       documentid: docId[index],
+                        //       whichitem: 'FoundItems',
+                        //     ),
+                        //   ),
+                        // ).then((_) => setState(() {}));
+                      }
+                    },
+                    child: GettheData(
+                      documentid: docId[index],
+                      whichitem: 'LostItems',
+                    ),
+                  );
+                },
+              );
+            },
+          )),
+        ],
       ),
     );
   }
