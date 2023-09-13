@@ -26,21 +26,25 @@ class _UserProfileState extends State<UserProfile> {
   String name = '';
   final String joined_data = FirebaseAuth.instance.currentUser!.uid;
   Future _getDocID() async {
-    final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+    try {
+      final String currentuid = FirebaseAuth.instance.currentUser!.uid;
 
-    await FirebaseFirestore.instance
-        .collection("UserData")
-        .where('userid', isEqualTo: currentuid)
-        .get()
-        .then(
-          (snapshot) => snapshot.docs.forEach((element) {
-            identifier.addAll(element.data());
-            username = identifier['name'];
-            useremail = identifier['email'];
-            useraddress = identifier['address'];
-            userph = identifier['phoneNo'];
-          }),
-        );
+      await FirebaseFirestore.instance
+          .collection("UserData")
+          .where('userid', isEqualTo: currentuid)
+          .get()
+          .then(
+            (snapshot) => snapshot.docs.forEach((element) {
+              identifier.addAll(element.data());
+              username = identifier['name'];
+              useremail = identifier['email'];
+              useraddress = identifier['address'];
+              userph = identifier['phoneNo'];
+            }),
+          );
+    } catch (e) {
+      print("error");
+    }
   }
 
   String username = '';

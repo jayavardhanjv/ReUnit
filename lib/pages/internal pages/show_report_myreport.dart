@@ -39,6 +39,7 @@ class Show_myiem extends StatelessWidget {
   // String reportimage;
   @override
   Widget build(BuildContext context) {
+    String _imagedata;
     try {
       CollectionReference reports =
           FirebaseFirestore.instance.collection(whichitem);
@@ -49,6 +50,11 @@ class Show_myiem extends StatelessWidget {
             Map<String, dynamic> data =
                 snapshot.data!.data() as Map<String, dynamic>;
             // reportimage = data["image"];
+            try {
+              _imagedata = data["image"];
+            } catch (e) {
+              _imagedata = "assets/images/no_image.png";
+            }
             return Scaffold(
               body: SingleChildScrollView(
                 child: Column(
@@ -139,10 +145,8 @@ class Show_myiem extends StatelessWidget {
                                   ],
                                   borderRadius: BorderRadius.circular(20),
                                   color: Colors.grey[600]),
-                              child: Image.asset(
-                                data["image"] == null
-                                    ? "assets/images/no_image.png"
-                                    : data["image"],
+                              child: Image.network(
+                                _imagedata,
                                 alignment: Alignment.center,
                                 fit: BoxFit.contain,
                               )),

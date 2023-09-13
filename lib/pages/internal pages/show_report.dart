@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
-class Show_Item extends StatelessWidget {
+class Show_Item extends StatefulWidget {
   final String documentid;
   final String whichitem;
 
@@ -13,15 +14,68 @@ class Show_Item extends StatelessWidget {
     required this.documentid,
     required this.whichitem,
   });
+  @override
+  State<Show_Item> createState() => _Show_ItemState();
+}
+
+class _Show_ItemState extends State<Show_Item> {
+  var identifier = new Map();
+
+  String currentuser = FirebaseAuth.instance.currentUser!.uid;
+
+  Future _getDocID() async {
+    try {
+      final String currentuid = FirebaseAuth.instance.currentUser!.uid;
+
+      await FirebaseFirestore.instance
+          .collection("UserData")
+          .where('userid', isEqualTo: currentuid)
+          .get()
+          .then(
+            (snapshot) => snapshot.docs.forEach((element) {
+              identifier.addAll(element.data());
+              username = identifier['name'];
+              useremail = identifier['email'];
+              useraddress = identifier['address'];
+              userph = identifier['phoneNo'];
+            }),
+          );
+      print(username);
+    } catch (e) {
+      print("error");
+    }
+  }
+
+  // String? useremail = FirebaseAuth.instance.currentUser!.email;
+  late String username;
+  late String useremail;
+
+  // String useremail = '';
+  late String useraddress;
+
+  late String userph;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _getDocID();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    // _Show_ItemState();
+  }
 
   @override
   Widget build(BuildContext context) {
     try {
       String _imagedata;
       CollectionReference reports =
-          FirebaseFirestore.instance.collection(whichitem);
+          FirebaseFirestore.instance.collection(widget.whichitem);
       return FutureBuilder<DocumentSnapshot>(
-        future: reports.doc(documentid).get(),
+        future: reports.doc(widget.documentid).get(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             Map<String, dynamic> data =
@@ -30,6 +84,30 @@ class Show_Item extends StatelessWidget {
               _imagedata = data["image"];
             } catch (e) {
               _imagedata = "assets/images/no_image.png";
+            }
+            Future MyConnect() async {
+              try {
+                FirebaseFirestore.instance
+                    .collection("Connection")
+                    .doc("report")
+                    .collection(data["useruid"])
+                    .doc()
+                    .set({
+                      "reportowner": data["useruid"],
+                      "docid": widget.documentid,
+                      "wanttoconnect": currentuser,
+                      "useremail": useremail,
+                      "reportdis": data["des"],
+                      "imagedata": data["image"],
+                      "username": username,
+                      "userph": userph,
+                      "useraddress": useraddress
+                    })
+                    .then((snapshot) => print("connection Added"))
+                    .catchError((onError) => print("error found"));
+              } catch (e) {
+                print(e);
+              }
             }
 
             return Scaffold(
@@ -196,7 +274,9 @@ class Show_Item extends StatelessWidget {
                                   width: MediaQuery.of(context).size.width - 60,
                                   decoration: BoxDecoration(),
                                   child: MyButton(
-                                    onTap: () {},
+                                    onTap: () {
+                                      MyConnect();
+                                    },
                                     text: 'Connect +',
                                   ),
                                 )
