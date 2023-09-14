@@ -175,7 +175,7 @@ class Show_myiem extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  data["address"],
+                                  data["title"],
                                   style: TextStyle(
                                       fontFamily: "Poppins", fontSize: 22),
                                 ),
@@ -205,12 +205,12 @@ class Show_myiem extends StatelessWidget {
                                           fontSize: 14,
                                         ),
                                       ),
-                                      Text(
-                                        "24 days ago",
-                                        style: TextStyle(
-                                            fontFamily: "Poppins",
-                                            fontSize: 14),
-                                      ),
+                                      // Text(
+                                      //   "24 days ago",
+                                      //   style: TextStyle(
+                                      //       fontFamily: "Poppins",
+                                      //       fontSize: 14),
+                                      // ),
                                     ],
                                   ),
                                 ),

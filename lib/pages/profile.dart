@@ -40,6 +40,11 @@ class _UserProfileState extends State<UserProfile> {
               useremail = identifier['email'];
               useraddress = identifier['address'];
               userph = identifier['phoneNo'];
+              try {
+                userimage = identifier['profile image'];
+              } catch (e) {
+                print("noimage");
+              }
             }),
           );
     } catch (e) {
@@ -51,6 +56,7 @@ class _UserProfileState extends State<UserProfile> {
   String useremail = '';
   String useraddress = '';
   String userph = '';
+  String userimage = '';
   final String currentuid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
@@ -75,8 +81,21 @@ class _UserProfileState extends State<UserProfile> {
   //     print(doc["name"]);
   //   });
   // });
+
   @override
   Widget build(BuildContext context) {
+    String _imagedata;
+    try {
+      if (userimage != '') {
+        _imagedata = userimage;
+      } else {
+        _imagedata =
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrL-6SWu9yRIXoTaEFrIrmrXn6mY4iHEpXo0LuyI-U_EVWxqa84huhkkYeFDq7G3NO50U&usqp=CAU";
+      }
+    } catch (e) {
+      _imagedata =
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrL-6SWu9yRIXoTaEFrIrmrXn6mY4iHEpXo0LuyI-U_EVWxqa84huhkkYeFDq7G3NO50U&usqp=CAU";
+    }
     return Scaffold(
       body: FutureBuilder(
         future: _getDocID(),
@@ -145,8 +164,8 @@ class _UserProfileState extends State<UserProfile> {
                             width: 120,
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(180),
-                              child: Image.asset(
-                                "assets/images/no_image.png",
+                              child: Image.network(
+                                _imagedata,
                                 fit: BoxFit.cover,
                               ),
                             ),

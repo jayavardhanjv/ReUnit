@@ -73,7 +73,7 @@ class GettheData extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Center(
                             child: Text(
-                              data["address"],
+                              data["title"],
                               overflow: TextOverflow.clip,
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -85,7 +85,7 @@ class GettheData extends StatelessWidget {
                         ),
                         new Container(
                           // padding: new EdgeInsets.only(right: 8.0),
-                          height: 80,
+                          height: 40,
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Center(
                             child: new Text(
@@ -101,30 +101,22 @@ class GettheData extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
-                          // padding: new EdgeInsets.only(right: 13.0),
-                          // height: 80,
+                        new Container(
+                          // padding: new EdgeInsets.only(right: 8.0),
+                          height: 80,
                           width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "14 days",
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 10,
-                                ),
+                          child: Center(
+                            child: new Text(
+                              data["address"],
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 3,
+                              style: new TextStyle(
+                                fontSize: 12.0,
+                                fontFamily: 'Roboto',
+                                color: new Color(0xFF212121),
+                                fontWeight: FontWeight.bold,
                               ),
-                              Text(
-                                "14 days",
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
                         ),
                       ],

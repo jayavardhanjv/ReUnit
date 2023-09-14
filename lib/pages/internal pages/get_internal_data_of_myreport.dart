@@ -73,7 +73,7 @@ class MyReportData extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.4,
                           child: Center(
                             child: Text(
-                              data["address"],
+                              data["title"],
                               overflow: TextOverflow.clip,
                               textAlign: TextAlign.center,
                               style: TextStyle(

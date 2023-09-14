@@ -231,7 +231,7 @@ class _Show_ItemState extends State<Show_Item> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 Text(
-                                  data["address"],
+                                  data["title"],
                                   style: TextStyle(
                                       fontFamily: "Poppins", fontSize: 22),
                                 ),
