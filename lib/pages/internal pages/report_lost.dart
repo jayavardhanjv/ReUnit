@@ -26,6 +26,7 @@ class Report_Lost extends StatefulWidget {
 class _Report_LostState extends State<Report_Lost> {
   var _formKey = GlobalKey<FormState>();
   var isLoading = false;
+  late final TextEditingController _title;
   late final TextEditingController _dec;
   late final TextEditingController _address;
   late final TextEditingController _phone;
@@ -35,6 +36,7 @@ class _Report_LostState extends State<Report_Lost> {
     FirebaseFirestore.instance
         .collection("LostItems")
         .add({
+          "title": _title.text,
           "des": _dec.text,
           "address": _address.text,
           "phno": _phone.text,
@@ -66,6 +68,7 @@ class _Report_LostState extends State<Report_Lost> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    _title = TextEditingController();
     _dec = TextEditingController();
     _address = TextEditingController();
     _phone = TextEditingController();
@@ -77,6 +80,7 @@ class _Report_LostState extends State<Report_Lost> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
+    _title.dispose();
     _dec.dispose();
     _address.dispose();
     _phone.dispose();
@@ -134,7 +138,7 @@ class _Report_LostState extends State<Report_Lost> {
         child: Column(
           children: [
             Container(
-              padding: EdgeInsets.only(top: 60, left: 20),
+              padding: EdgeInsets.only(top: 30, left: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -199,7 +203,7 @@ class _Report_LostState extends State<Report_Lost> {
               height: 30,
             ),
             Container(
-              height: 703,
+              height: 800,
               decoration: BoxDecoration(
                 // color: Colors.white70,
                 borderRadius: BorderRadius.circular(30),
@@ -353,6 +357,49 @@ class _Report_LostState extends State<Report_Lost> {
                           //     return vName(value);
                           //   },
                           // ),
+                          TextFormField(
+                            keyboardType: TextInputType.name,
+                            // maxLines: 5,
+                            // validator: validator,
+                            cursorColor: Colors.red[300],
+                            controller: _title,
+                            // autofocus: true,
+                            obscureText: false,
+                            enableSuggestions: true,
+                            expands: false,
+                            decoration: InputDecoration(
+                                hintText: "Enter  the  Title",
+                                enabledBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                focusedBorder: const OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                  ),
+                                ),
+                                fillColor: Colors.grey.shade100,
+                                filled: true,
+                                focusColor: Colors.red[300],
+                                suffixIcon: Icon(Icons.title_rounded),
+                                suffixIconColor: Colors.grey,
+                                hintStyle: TextStyle(
+                                  fontFamily: 'Poppins',
+                                  fontSize: 13,
+                                  color: Colors.grey[500],
+                                )),
+                            // keyboardType: TextInputType.emailAddress,
+                            onFieldSubmitted: (value) {
+                              //Validator
+                            },
+                            validator: (value) {
+                              return vName(value);
+                            },
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
                           TextFormField(
                             keyboardType: TextInputType.text,
                             maxLines: 6,

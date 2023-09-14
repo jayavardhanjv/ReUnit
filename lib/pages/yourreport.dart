@@ -151,20 +151,33 @@ class _MyReportState extends State<MyReport> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(255, 93, 78, 1),
+                        shape: StadiumBorder(),
+                      ),
                       onPressed: () {
                         setState(() {
                           selectedwidgetmaker = WidgetMaker.found;
                         });
                       },
-                      child: Text("Found")),
+                      child: Text(
+                        "Found",
+                        style: TextStyle(fontFamily: "Poppins"),
+                      )),
                   ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color.fromRGBO(255, 93, 78, 1),
+                        shape: StadiumBorder(),
+                      ),
                       onPressed: () {
                         // dispose();
+
                         setState(() {
                           selectedwidgetmaker = WidgetMaker.lost;
                         });
                       },
-                      child: Text("Lost")),
+                      child: Text("Lost",
+                          style: TextStyle(fontFamily: "Poppins"))),
                 ],
               ),
             ),

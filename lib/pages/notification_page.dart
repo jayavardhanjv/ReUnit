@@ -99,13 +99,7 @@ class _NotificationPageState extends State<NotificationPage> {
                   ),
                   Expanded(child: Container()),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        CupertinoPageRoute(
-                            builder: (context) => const NotificationPage()),
-                      );
-                    },
+                    onTap: () {},
                     child: Container(
                       margin: EdgeInsets.only(right: 20),
                       width: 50,
@@ -118,7 +112,7 @@ class _NotificationPageState extends State<NotificationPage> {
                         // height: 5,
                         // width: 5,
                         scale: 18,
-                        // color: Colors.black87,
+                        color: Colors.transparent,
                       ),
                     ),
                   ),

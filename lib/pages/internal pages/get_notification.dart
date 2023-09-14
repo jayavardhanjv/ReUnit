@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/constants.dart';
 import 'package:gaming_accessories_rent_app/components/show_user_connect.dart';
@@ -150,22 +151,37 @@ class GetNotification extends StatelessWidget {
                         Container(
                           // padding: new EdgeInsets.only(right: 13.0),
                           // height: 80,
-                          width: MediaQuery.of(context).size.width * 0.4,
+                          width: MediaQuery.of(context).size.width * 0.8,
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               ElevatedButton(
                                   onPressed: () {
-                                    mydialog();
-                                    showconnect(
+                                    // mydialog();
+                                    try {
+                                      Navigator.push(
                                         context,
-                                        data["useremail"],
-                                        "The Data of your Connection",
-                                        data["username"],
-                                        data["userph"],
-                                        data["useraddress"]);
+                                        CupertinoPageRoute(
+                                            builder: (context) => Contact_data(
+                                                  username: data["username"],
+                                                  useremail: data["useremail"],
+                                                  address: data["useraddress"],
+                                                  phone: data["userph"],
+                                                )),
+                                      );
+                                    } catch (e) {
+                                      print(e);
+                                    }
                                   },
-                                  child: Text("accept")),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        const Color.fromRGBO(255, 93, 78, 1),
+                                    shape: StadiumBorder(),
+                                  ),
+                                  child: Text(
+                                    "accept",
+                                    style: TextStyle(fontFamily: "Poppins"),
+                                  )),
                               ElevatedButton(
                                   onPressed: () {
                                     Reject();
@@ -176,7 +192,13 @@ class GetNotification extends StatelessWidget {
                                             builder: (BuildContext context) =>
                                                 NotificationPage()));
                                   },
-                                  child: Text("Reject")),
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        const Color.fromRGBO(255, 93, 78, 1),
+                                    shape: StadiumBorder(),
+                                  ),
+                                  child: Text("Reject",
+                                      style: TextStyle(fontFamily: "Poppins"))),
                             ],
                           ),
                         ),
@@ -213,54 +235,54 @@ class GetNotification extends StatelessWidget {
   }
 }
 
-mydialog() {
-  var widget;
-  return Stack(children: <Widget>[
-    Container(
-        padding: EdgeInsets.only(
-            left: Constants.padding,
-            top: Constants.avatarRadius + Constants.padding,
-            right: Constants.padding,
-            bottom: Constants.padding),
-        margin: EdgeInsets.only(top: Constants.avatarRadius),
-        decoration: BoxDecoration(
-            shape: BoxShape.rectangle,
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(Constants.padding),
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
-            ]),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              "hi bro",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-            ),
-            SizedBox(
-              height: 15,
-            ),
-            Text(
-              "hello bro",
-              style: TextStyle(fontSize: 14),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 22,
-            ),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: ElevatedButton(
-                  onPressed: () {
-                    // Navigator.of(context).pop();
-                  },
-                  child: Text(
-                    widget.text,
-                    style: TextStyle(fontSize: 18),
-                  )),
-            ),
-          ],
-        ))
-  ]);
-}
+// mydialog() {
+//   var widget;
+//   return Stack(children: <Widget>[
+//     Container(
+//         padding: EdgeInsets.only(
+//             left: Constants.padding,
+//             top: Constants.avatarRadius + Constants.padding,
+//             right: Constants.padding,
+//             bottom: Constants.padding),
+//         margin: EdgeInsets.only(top: Constants.avatarRadius),
+//         decoration: BoxDecoration(
+//             shape: BoxShape.rectangle,
+//             color: Colors.white,
+//             borderRadius: BorderRadius.circular(Constants.padding),
+//             boxShadow: [
+//               BoxShadow(
+//                   color: Colors.black, offset: Offset(0, 10), blurRadius: 10),
+//             ]),
+//         child: Column(
+//           mainAxisSize: MainAxisSize.min,
+//           children: <Widget>[
+//             Text(
+//               "hi bro",
+//               style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+//             ),
+//             SizedBox(
+//               height: 15,
+//             ),
+//             Text(
+//               "hello bro",
+//               style: TextStyle(fontSize: 14),
+//               textAlign: TextAlign.center,
+//             ),
+//             SizedBox(
+//               height: 22,
+//             ),
+//             Align(
+//               alignment: Alignment.bottomRight,
+//               child: ElevatedButton(
+//                   onPressed: () {
+//                     // Navigator.of(context).pop();
+//                   },
+//                   child: Text(
+//                     widget.text,
+//                     style: TextStyle(fontSize: 18),
+//                   )),
+//             ),
+//           ],
+//         ))
+//   ]);
+// }
