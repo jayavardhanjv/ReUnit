@@ -51,6 +51,9 @@ class _LostPageState extends State<LostPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (docId != null) {
+      docId.clear();
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

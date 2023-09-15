@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
+import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -276,6 +277,8 @@ class _Show_ItemState extends State<Show_Item> {
                                   child: MyButton(
                                     onTap: () {
                                       MyConnect();
+                                      showError(context, "Request Sent",
+                                          "Send a request for Connect");
                                     },
                                     text: 'Connect +',
                                   ),

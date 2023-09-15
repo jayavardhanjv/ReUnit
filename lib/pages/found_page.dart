@@ -51,6 +51,9 @@ class _FoundPageState extends State<FoundPage> {
 
   @override
   Widget build(BuildContext context) {
+    if (docId != null) {
+      docId.clear();
+    }
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

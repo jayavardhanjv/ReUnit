@@ -120,7 +120,7 @@ class GetNotification extends StatelessWidget {
                           width: MediaQuery.of(context).size.width - 60,
                           child: Center(
                             child: Text(
-                              "Username : ${data["useremail"]}",
+                              "Username : ${data["username"]}",
                               overflow: TextOverflow.clip,
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -185,6 +185,7 @@ class GetNotification extends StatelessWidget {
                               ElevatedButton(
                                   onPressed: () {
                                     Reject();
+
                                     showError(context, "",
                                         "The request for connect is Rejected.");
                                     Navigator.of(context).push(
