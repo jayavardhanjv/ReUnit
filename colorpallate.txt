@@ -1,0 +1,4 @@
+#ff5d4e ----- 255, 93, 78 red
+#ffcb7c ----- 255, 203, 124 yellow
+#00d1d3 ----- 0, 209, 211 blue green mix
+#cfcfcf ----- 207, 207, 207 grey

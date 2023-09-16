@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "576759230416",
+    "project_id": "reunite-cc011",
+    "storage_bucket": "reunite-cc011.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576759230416:android:b88884834d31d8af1cd3d5",
+        "android_client_info": {
+          "package_name": "com.example.gaming_accessories_rent_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576759230416-6dos17nbb8c154ua425s30ginibnltga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpYqxFy6ow8eDeuD1pAya2VTGmLf8fLkE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576759230416-6dos17nbb8c154ua425s30ginibnltga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
