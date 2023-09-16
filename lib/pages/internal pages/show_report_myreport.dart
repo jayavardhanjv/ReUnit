@@ -2,10 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
-<<<<<<< HEAD
+
 import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
-=======
->>>>>>> cb3726194330ae59eb00e5da4b8424bb9fe6a52c
+
 import 'package:gaming_accessories_rent_app/pages/mainPage.dart';
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:gaming_accessories_rent_app/pages/yourreport.dart';
@@ -263,16 +262,12 @@ class Show_myiem extends StatelessWidget {
                                   width: MediaQuery.of(context).size.width - 60,
                                   decoration: BoxDecoration(),
                                   child: MyButton(
-<<<<<<< HEAD
                                     onTap: () {
                                       showError(
                                           context,
                                           "Congradulation!! the item has been ReUnited",
                                           "ReUnited!!");
                                     },
-=======
-                                    onTap: () {},
->>>>>>> cb3726194330ae59eb00e5da4b8424bb9fe6a52c
                                     text: 'ReUnited',
                                   ),
                                 )
