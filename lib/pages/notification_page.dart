@@ -59,6 +59,12 @@ class _NotificationPageState extends State<NotificationPage> {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
+=======
+    if (docId != null) {
+      docId.clear();
+    }
+>>>>>>> cb3726194330ae59eb00e5da4b8424bb9fe6a52c
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(

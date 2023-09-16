@@ -185,6 +185,10 @@ class GetNotification extends StatelessWidget {
                               ElevatedButton(
                                   onPressed: () {
                                     Reject();
+<<<<<<< HEAD
+=======
+
+>>>>>>> cb3726194330ae59eb00e5da4b8424bb9fe6a52c
                                     showError(context, "",
                                         "The request for connect is Rejected.");
                                     Navigator.of(context).push(

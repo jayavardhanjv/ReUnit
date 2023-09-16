@@ -3,6 +3,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/button.dart';
+<<<<<<< HEAD
+=======
+import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
+>>>>>>> cb3726194330ae59eb00e5da4b8424bb9fe6a52c
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -276,6 +280,11 @@ class _Show_ItemState extends State<Show_Item> {
                                   child: MyButton(
                                     onTap: () {
                                       MyConnect();
+<<<<<<< HEAD
+=======
+                                      showError(context, "Request Sent",
+                                          "Send a request for Connect");
+>>>>>>> cb3726194330ae59eb00e5da4b8424bb9fe6a52c
                                     },
                                     text: 'Connect +',
                                   ),
