@@ -202,369 +202,372 @@ class _Report_FoundState extends State<Report_Found> {
             const SizedBox(
               height: 30,
             ),
-            Container(
-              height: 800,
-              decoration: BoxDecoration(
-                // color: Colors.white70,
-                borderRadius: BorderRadius.circular(30),
-              ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width - 50,
-                    child: Center(
-                      child: Text(
-                        "fill the data to report the found items.",
-                        style: TextStyle(
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w800,
-                          fontSize: 17,
-                          overflow: TextOverflow.clip,
+            SingleChildScrollView(
+              child: Container(
+                height: 900,
+                decoration: BoxDecoration(
+                  // color: Colors.white70,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width - 50,
+                      child: Center(
+                        child: Text(
+                          "fill the data to report the found items.",
+                          style: TextStyle(
+                            fontFamily: "Poppins",
+                            fontWeight: FontWeight.w800,
+                            fontSize: 17,
+                            overflow: TextOverflow.clip,
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    height: 200,
-                    width: MediaQuery.of(context).size.width - 50,
-                    decoration: BoxDecoration(
-                      color: Colors.black,
+                    SizedBox(
+                      height: 10,
                     ),
-                    child: _image != null
-                        ? Image.file(file)
-                        : Image.asset(
-                            "assets/images/no_image.png",
-                            fit: BoxFit.cover,
-                          ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      // Navigator.push(
-                      //   context,
-                      //   CupertinoPageRoute<void>(
-                      //     builder: (BuildContext context) => const EditUser(),
-                      // ),
-                      // );
-                      addImage();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromRGBO(255, 93, 78, 1),
-                      shape: StadiumBorder(),
+                    Container(
+                      height: 200,
+                      width: MediaQuery.of(context).size.width - 50,
+                      decoration: BoxDecoration(
+                        color: Colors.black,
+                      ),
+                      child: _image != null
+                          ? Image.file(file)
+                          : Image.asset(
+                              "assets/images/no_image.png",
+                              fit: BoxFit.cover,
+                            ),
                     ),
-                    child: Text(
-                      "Upload Image",
-                      style: TextStyle(
-                        fontFamily: "Poppins",
-                        fontSize: 14,
+                    SizedBox(
+                      height: 10,
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Navigator.push(
+                        //   context,
+                        //   CupertinoPageRoute<void>(
+                        //     builder: (BuildContext context) => const EditUser(),
+                        // ),
+                        // );
+                        addImage();
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromRGBO(255, 93, 78, 1),
+                        shape: StadiumBorder(),
+                      ),
+                      child: Text(
+                        "Upload Image",
+                        style: TextStyle(
+                          fontFamily: "Poppins",
+                          fontSize: 14,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
-                    // padding: EdgeInsets.only(left: 100),
-                    width: MediaQuery.of(context).size.width - 50,
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          // TextFormField(
-                          //   keyboardType: TextInputType.text,
-                          //   maxLines: null,
-                          //   minLines: null,
-                          //   // validator: RequiredValidator(errorText: "Required..*"),
-                          //   cursorColor: Colors.red[300],
-                          //   controller: _dec,
-                          //   obscureText: false,
-                          //   enableSuggestions: true,
-                          //   expands: true,
-                          //   // maxLength: 40,
-                          //   validator: (value) {
-                          //     return vName(value);
-                          //   },
-                          //   decoration: InputDecoration(
-                          //       hintText: "Describe about the item",
-                          //       enabledBorder: const OutlineInputBorder(
-                          //         borderSide: BorderSide(
-                          //           color: Colors.white,
-                          //         ),
-                          //       ),
-                          //       focusedBorder: const OutlineInputBorder(
-                          //         borderSide: BorderSide(
-                          //           color: Colors.white,
-                          //         ),
-                          //       ),
-                          //       fillColor: Colors.grey.shade100,
-                          //       filled: true,
-                          //       focusColor: Colors.red[300],
-                          //       suffixIcon: Icon(Icons.description_outlined),
-                          //       suffixIconColor: Colors.grey,
-                          //       hintStyle: TextStyle(
-                          //         fontFamily: "Poppins",
-                          //         overflow: TextOverflow.visible,
-                          //         fontSize: 14,
-                          //         color: Colors.grey[500],
-                          //       )),
-                          // ),
-                          // TextFormField(
-                          //   keyboardType: TextInputType.text,
-                          //   // keyboardType: TextInputType.text,
-                          //   maxLines: null,
-                          //   minLines: null,
-                          //   // maxLines: 5,
-                          //   // validator: validator,
-                          //   cursorColor: Colors.red[300],
-                          //   controller: _dec,
-                          //   // autofocus: true,
-                          //   obscureText: false,
-                          //   enableSuggestions: true,
-                          //   expands: true,
-                          //   decoration: InputDecoration(
-                          //       hintText: "Describe about the item",
-                          //       enabledBorder: const OutlineInputBorder(
-                          //         borderSide: BorderSide(
-                          //           color: Colors.white,
-                          //         ),
-                          //       ),
-                          //       focusedBorder: const OutlineInputBorder(
-                          //         borderSide: BorderSide(
-                          //           color: Colors.white,
-                          //         ),
-                          //       ),
-                          //       fillColor: Colors.grey.shade100,
-                          //       filled: true,
-                          //       focusColor: Colors.red[300],
-                          //       suffixIcon: Icon(Icons.description_outlined),
-                          //       suffixIconColor: Colors.grey,
-                          //       hintStyle: TextStyle(
-                          //         fontFamily: 'Poppins',
-                          //         fontSize: 13,
-                          //         color: Colors.grey[500],
-                          //       )),
-                          //   // keyboardType: TextInputType.emailAddress,
-                          //   onFieldSubmitted: (value) {
-                          //     //Validator
-                          //   },
-                          //   validator: (value) {
-                          //     return vName(value);
-                          //   },
-                          // ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      // padding: EdgeInsets.only(left: 100),
+                      width: MediaQuery.of(context).size.width - 50,
+                      child: Form(
+                        key: _formKey,
+                        child: Column(
+                          children: [
+                            // TextFormField(
+                            //   keyboardType: TextInputType.text,
+                            //   maxLines: null,
+                            //   minLines: null,
+                            //   // validator: RequiredValidator(errorText: "Required..*"),
+                            //   cursorColor: Colors.red[300],
+                            //   controller: _dec,
+                            //   obscureText: false,
+                            //   enableSuggestions: true,
+                            //   expands: true,
+                            //   // maxLength: 40,
+                            //   validator: (value) {
+                            //     return vName(value);
+                            //   },
+                            //   decoration: InputDecoration(
+                            //       hintText: "Describe about the item",
+                            //       enabledBorder: const OutlineInputBorder(
+                            //         borderSide: BorderSide(
+                            //           color: Colors.white,
+                            //         ),
+                            //       ),
+                            //       focusedBorder: const OutlineInputBorder(
+                            //         borderSide: BorderSide(
+                            //           color: Colors.white,
+                            //         ),
+                            //       ),
+                            //       fillColor: Colors.grey.shade100,
+                            //       filled: true,
+                            //       focusColor: Colors.red[300],
+                            //       suffixIcon: Icon(Icons.description_outlined),
+                            //       suffixIconColor: Colors.grey,
+                            //       hintStyle: TextStyle(
+                            //         fontFamily: "Poppins",
+                            //         overflow: TextOverflow.visible,
+                            //         fontSize: 14,
+                            //         color: Colors.grey[500],
+                            //       )),
+                            // ),
+                            // TextFormField(
+                            //   keyboardType: TextInputType.text,
+                            //   // keyboardType: TextInputType.text,
+                            //   maxLines: null,
+                            //   minLines: null,
+                            //   // maxLines: 5,
+                            //   // validator: validator,
+                            //   cursorColor: Colors.red[300],
+                            //   controller: _dec,
+                            //   // autofocus: true,
+                            //   obscureText: false,
+                            //   enableSuggestions: true,
+                            //   expands: true,
+                            //   decoration: InputDecoration(
+                            //       hintText: "Describe about the item",
+                            //       enabledBorder: const OutlineInputBorder(
+                            //         borderSide: BorderSide(
+                            //           color: Colors.white,
+                            //         ),
+                            //       ),
+                            //       focusedBorder: const OutlineInputBorder(
+                            //         borderSide: BorderSide(
+                            //           color: Colors.white,
+                            //         ),
+                            //       ),
+                            //       fillColor: Colors.grey.shade100,
+                            //       filled: true,
+                            //       focusColor: Colors.red[300],
+                            //       suffixIcon: Icon(Icons.description_outlined),
+                            //       suffixIconColor: Colors.grey,
+                            //       hintStyle: TextStyle(
+                            //         fontFamily: 'Poppins',
+                            //         fontSize: 13,
+                            //         color: Colors.grey[500],
+                            //       )),
+                            //   // keyboardType: TextInputType.emailAddress,
+                            //   onFieldSubmitted: (value) {
+                            //     //Validator
+                            //   },
+                            //   validator: (value) {
+                            //     return vName(value);
+                            //   },
+                            // ),
 
-                          TextFormField(
-                            keyboardType: TextInputType.name,
-                            // maxLines: 5,
-                            // validator: validator,
-                            cursorColor: Colors.red[300],
-                            controller: _title,
-                            // autofocus: true,
-                            obscureText: false,
-                            enableSuggestions: true,
-                            expands: false,
-                            decoration: InputDecoration(
-                                hintText: "Enter  the  Title",
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
+                            TextFormField(
+                              keyboardType: TextInputType.name,
+                              // maxLines: 5,
+                              // validator: validator,
+                              cursorColor: Colors.red[300],
+                              controller: _title,
+                              // autofocus: true,
+                              obscureText: false,
+                              enableSuggestions: true,
+                              expands: false,
+                              decoration: InputDecoration(
+                                  hintText: "Enter  the  Title",
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
                                   ),
-                                ),
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                focusColor: Colors.red[300],
-                                suffixIcon: Icon(Icons.title_rounded),
-                                suffixIconColor: Colors.grey,
-                                hintStyle: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13,
-                                  color: Colors.grey[500],
-                                )),
-                            // keyboardType: TextInputType.emailAddress,
-                            onFieldSubmitted: (value) {
-                              //Validator
-                            },
-                            validator: (value) {
-                              return vName(value);
-                            },
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.text,
-                            maxLines: 6,
-                            // validator: validator,
-                            cursorColor: Colors.red[300],
-                            controller: _dec,
-                            // autofocus: true,
-                            obscureText: false,
-                            enableSuggestions: true,
-                            // expands: true,
-                            decoration: InputDecoration(
-                                hintText: "Describe the item",
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                focusColor: Colors.red[300],
-                                suffixIcon: Icon(Icons.description),
-                                suffixIconColor: Colors.grey,
-                                hintStyle: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13,
-                                  color: Colors.grey[500],
-                                )),
-                            // keyboardType: TextInputType.emailAddress,
-                            onFieldSubmitted: (value) {
-                              //Validator
-                            },
-                            validator: (value) {
-                              return vName(value);
-                            },
-                          ),
-
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.streetAddress,
-                            // maxLines: 5,
-                            // validator: validator,
-                            cursorColor: Colors.red[300],
-                            controller: _address,
-                            // autofocus: true,
-                            obscureText: false,
-                            enableSuggestions: true,
-                            expands: false,
-                            decoration: InputDecoration(
-                                hintText: "Enter  the  Address",
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                focusColor: Colors.red[300],
-                                suffixIcon: Icon(Icons.navigation_outlined),
-                                suffixIconColor: Colors.grey,
-                                hintStyle: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13,
-                                  color: Colors.grey[500],
-                                )),
-                            // keyboardType: TextInputType.emailAddress,
-                            onFieldSubmitted: (value) {
-                              //Validator
-                            },
-                            validator: (value) {
-                              return vAddress(value);
-                            },
-                          ),
-                          const SizedBox(
-                            height: 15,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.phone,
-                            // maxLines: 5,
-                            // validator: validator,
-                            cursorColor: Colors.red[300],
-                            controller: _phone,
-                            // autofocus: true,
-                            obscureText: false,
-                            enableSuggestions: true,
-                            expands: false,
-                            decoration: InputDecoration(
-                                hintText: "Enter  the  Phone Number",
-                                enabledBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                focusedBorder: const OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.white,
-                                  ),
-                                ),
-                                fillColor: Colors.grey.shade100,
-                                filled: true,
-                                focusColor: Colors.red[300],
-                                suffixIcon: Icon(Icons.phone_android),
-                                suffixIconColor: Colors.grey,
-                                hintStyle: TextStyle(
-                                  fontFamily: 'Poppins',
-                                  fontSize: 13,
-                                  color: Colors.grey[500],
-                                )),
-                            // keyboardType: TextInputType.emailAddress,
-                            onFieldSubmitted: (value) {
-                              //Validator
-                            },
-                            validator: (value) {
-                              return vPhone(value);
-                            },
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          SizedBox(
-                            width: 200,
-                            height: 60,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                // Navigator.push(
-                                //   context,
-                                //   CupertinoPageRoute<void>(
-                                //     builder: (BuildContext context) => const EditUser(),
-                                // ),
-                                // );
-                                _submit();
+                                  fillColor: Colors.grey.shade100,
+                                  filled: true,
+                                  focusColor: Colors.red[300],
+                                  suffixIcon: Icon(Icons.title_rounded),
+                                  suffixIconColor: Colors.grey,
+                                  hintStyle: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 13,
+                                    color: Colors.grey[500],
+                                  )),
+                              // keyboardType: TextInputType.emailAddress,
+                              onFieldSubmitted: (value) {
+                                //Validator
                               },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Color.fromRGBO(255, 93, 78, 1),
-                                shape: StadiumBorder(),
-                              ),
-                              child: Text(
-                                "Report",
-                                style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 20,
+                              validator: (value) {
+                                return vName(value);
+                              },
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              keyboardType: TextInputType.text,
+                              maxLines: 6,
+                              // validator: validator,
+                              cursorColor: Colors.red[300],
+                              controller: _dec,
+                              // autofocus: true,
+                              obscureText: false,
+                              enableSuggestions: true,
+                              // expands: true,
+                              decoration: InputDecoration(
+                                  hintText: "Describe the item",
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  fillColor: Colors.grey.shade100,
+                                  filled: true,
+                                  focusColor: Colors.red[300],
+                                  suffixIcon: Icon(Icons.description),
+                                  suffixIconColor: Colors.grey,
+                                  hintStyle: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 13,
+                                    color: Colors.grey[500],
+                                  )),
+                              // keyboardType: TextInputType.emailAddress,
+                              onFieldSubmitted: (value) {
+                                //Validator
+                              },
+                              validator: (value) {
+                                return vName(value);
+                              },
+                            ),
+
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              keyboardType: TextInputType.streetAddress,
+                              // maxLines: 5,
+                              // validator: validator,
+                              cursorColor: Colors.red[300],
+                              controller: _address,
+                              // autofocus: true,
+                              obscureText: false,
+                              enableSuggestions: true,
+                              expands: false,
+                              decoration: InputDecoration(
+                                  hintText: "Enter  the  Address",
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  fillColor: Colors.grey.shade100,
+                                  filled: true,
+                                  focusColor: Colors.red[300],
+                                  suffixIcon: Icon(Icons.navigation_outlined),
+                                  suffixIconColor: Colors.grey,
+                                  hintStyle: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 13,
+                                    color: Colors.grey[500],
+                                  )),
+                              // keyboardType: TextInputType.emailAddress,
+                              onFieldSubmitted: (value) {
+                                //Validator
+                              },
+                              validator: (value) {
+                                return vAddress(value);
+                              },
+                            ),
+                            const SizedBox(
+                              height: 15,
+                            ),
+                            TextFormField(
+                              keyboardType: TextInputType.phone,
+                              // maxLines: 5,
+                              // validator: validator,
+                              cursorColor: Colors.red[300],
+                              controller: _phone,
+                              // autofocus: true,
+                              obscureText: false,
+                              enableSuggestions: true,
+                              expands: false,
+                              decoration: InputDecoration(
+                                  hintText: "Enter  the  Phone Number",
+                                  enabledBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  focusedBorder: const OutlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  fillColor: Colors.grey.shade100,
+                                  filled: true,
+                                  focusColor: Colors.red[300],
+                                  suffixIcon: Icon(Icons.phone_android),
+                                  suffixIconColor: Colors.grey,
+                                  hintStyle: TextStyle(
+                                    fontFamily: 'Poppins',
+                                    fontSize: 13,
+                                    color: Colors.grey[500],
+                                  )),
+                              // keyboardType: TextInputType.emailAddress,
+                              onFieldSubmitted: (value) {
+                                //Validator
+                              },
+                              validator: (value) {
+                                return vPhone(value);
+                              },
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            SizedBox(
+                              width: 200,
+                              height: 60,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  // Navigator.push(
+                                  //   context,
+                                  //   CupertinoPageRoute<void>(
+                                  //     builder: (BuildContext context) => const EditUser(),
+                                  // ),
+                                  // );
+                                  _submit();
+                                },
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Color.fromRGBO(255, 93, 78, 1),
+                                  shape: StadiumBorder(),
+                                ),
+                                child: Text(
+                                  "Report",
+                                  style: TextStyle(
+                                    fontFamily: "Poppins",
+                                    fontSize: 20,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
+                      // child: BigText(
+                      //   text: 'Lost Items',
+                      // ),
                     ),
-                    // child: BigText(
-                    //   text: 'Lost Items',
-                    // ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             )
           ],

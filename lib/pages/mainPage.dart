@@ -8,6 +8,7 @@ import 'package:gaming_accessories_rent_app/pages/profile.dart';
 import 'package:gaming_accessories_rent_app/pages/yourreport.dart';
 // import 'package:gaming_accessories_rent_app/pages/yourreports.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -21,7 +22,7 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  List Pages = [HomePage(), LostPage(), FoundPage(), MyReport()];
+  List Pages = [HomePage(), MyReport(), UserProfile()];
   int currentindex = 0;
   void onTap(int index) {
     setState(() {
@@ -47,20 +48,16 @@ class _MainPageState extends State<MainPage> {
         selectedItemColor: Colors.black54,
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.apps),
-            label: "home",
+            icon: Icon(LineAwesomeIcons.home),
+            label: "Home",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_bubble),
-            label: "lost",
+            icon: Icon(LineAwesomeIcons.list_ul),
+            label: "Your Reports",
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.notifications),
-            label: "notification",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: "About",
+            icon: Icon(LineAwesomeIcons.user_astronaut),
+            label: "Profile",
           ),
         ],
       ),

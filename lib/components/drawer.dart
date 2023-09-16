@@ -7,6 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/components/show_error_dialog.dart';
 import 'package:gaming_accessories_rent_app/pages/found_page.dart';
+import 'package:gaming_accessories_rent_app/pages/internal%20pages/report_found.dart';
+import 'package:gaming_accessories_rent_app/pages/internal%20pages/report_lost.dart';
 import 'package:gaming_accessories_rent_app/pages/lost_page.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
@@ -78,45 +80,7 @@ class Mydrawer extends StatelessWidget {
             // const SizedBox(
             //   height: 10,
             // ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute<void>(
-                    builder: (BuildContext context) => const UserProfile(),
-                  ),
-                );
-              },
-              child: const SafeArea(
-                child: Center(
-                  child: Padding(
-                    padding: EdgeInsets.only(
-                      top: 5.0,
-                      left: 20,
-                    ),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.person_outline,
-                          color: Color.fromRGBO(255, 93, 78, 1),
-                          size: 30,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.only(left: 70.0),
-                          child: Text(
-                            "Profile",
-                            style: TextStyle(
-                                fontFamily: "Poppins",
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
+
             // const SizedBox(
             //   height: 10,
             // ),
@@ -146,7 +110,7 @@ class Mydrawer extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 50.0),
                           child: Text(
-                            "Items Lost",
+                            "Discover Lost",
                             style: TextStyle(
                                 fontFamily: "Poppins",
                                 fontSize: 18,
@@ -188,7 +152,85 @@ class Mydrawer extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.only(left: 40.0),
                           child: Text(
-                            "Items Found",
+                            "Discover Found",
+                            style: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute<void>(
+                    builder: (BuildContext context) => const Report_Lost(),
+                  ),
+                );
+              },
+              child: const SafeArea(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: 5.0,
+                      left: 20,
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          LineAwesomeIcons.book_open,
+                          color: Color.fromRGBO(255, 93, 78, 1),
+                          size: 30,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 50.0),
+                          child: Text(
+                            "Report Lost",
+                            style: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute<void>(
+                    builder: (BuildContext context) => const Report_Found(),
+                  ),
+                );
+              },
+              child: const SafeArea(
+                child: Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: 5.0,
+                      left: 20,
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(
+                          LineAwesomeIcons.book,
+                          color: Color.fromRGBO(255, 93, 78, 1),
+                          size: 30,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 50.0),
+                          child: Text(
+                            "Report Lost",
                             style: TextStyle(
                                 fontFamily: "Poppins",
                                 fontSize: 18,

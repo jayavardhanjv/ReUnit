@@ -6,10 +6,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gaming_accessories_rent_app/pages/edit2.dart';
 import 'package:gaming_accessories_rent_app/pages/editeuser.dart';
-<<<<<<< HEAD
+
 import 'package:gaming_accessories_rent_app/pages/infoPage.dart';
-=======
->>>>>>> cb3726194330ae59eb00e5da4b8424bb9fe6a52c
+
 import 'package:gaming_accessories_rent_app/pages/notification_page.dart';
 import 'package:gaming_accessories_rent_app/pages/test.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -299,7 +298,6 @@ class _UserProfileState extends State<UserProfile> {
                       Column(
                         children: [
                           GestureDetector(
-<<<<<<< HEAD
                             onTap: () {
                               Navigator.of(context).push(
                                 CupertinoPageRoute<void>(
@@ -308,9 +306,6 @@ class _UserProfileState extends State<UserProfile> {
                                 ),
                               );
                             },
-=======
-                            onTap: () {},
->>>>>>> cb3726194330ae59eb00e5da4b8424bb9fe6a52c
                             child: Center(
                               child: Padding(
                                 padding: const EdgeInsets.only(),
