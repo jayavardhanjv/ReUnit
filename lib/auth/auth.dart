@@ -32,7 +32,7 @@ class AuthPage extends StatelessWidget {
           }
         } else {
           // Connection state is not active yet
-          return CircularProgressIndicator();
+          return MainPage();
         }
       },
     );

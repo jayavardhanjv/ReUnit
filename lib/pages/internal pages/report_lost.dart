@@ -216,7 +216,7 @@ class _Report_LostState extends State<Report_Lost> {
                       width: MediaQuery.of(context).size.width - 50,
                       child: Center(
                         child: Text(
-                          "fill the data to report the found items.",
+                          "fill the data to report the Lost items.",
                           style: TextStyle(
                             fontFamily: "Poppins",
                             fontWeight: FontWeight.w800,
