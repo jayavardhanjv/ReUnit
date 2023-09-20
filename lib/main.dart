@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'ReUnite',
+      title: 'ReUnite App',
       home: const AuthPage(),
     );
   }
