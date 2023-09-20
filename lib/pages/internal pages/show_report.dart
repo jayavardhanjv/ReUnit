@@ -264,12 +264,12 @@ class _Show_ItemState extends State<Show_Item> {
                                           fontSize: 14,
                                         ),
                                       ),
-                                      Text(
-                                        "24 days ago",
-                                        style: TextStyle(
-                                            fontFamily: "Poppins",
-                                            fontSize: 14),
-                                      ),
+                                      // Text(
+                                      //   "24 days ago",
+                                      //   style: TextStyle(
+                                      //       fontFamily: "Poppins",
+                                      //       fontSize: 14),
+                                      // ),
                                     ],
                                   ),
                                 ),
@@ -283,7 +283,7 @@ class _Show_ItemState extends State<Show_Item> {
                                       showError(context, "Request Sent",
                                           "Send a request for Connect");
                                     },
-                                    text: 'C`onnect +',
+                                    text: 'Connect +',
                                   ),
                                 )
                               ],

@@ -101,32 +101,32 @@ class MyReportData extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
-                          // padding: new EdgeInsets.only(right: 13.0),
-                          // height: 80,
-                          width: MediaQuery.of(context).size.width * 0.4,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(
-                                "14 days",
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 10,
-                                ),
-                              ),
-                              Text(
-                                "14 days",
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                  fontFamily: "Poppins",
-                                  fontSize: 10,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   // padding: new EdgeInsets.only(right: 13.0),
+                        //   // height: 80,
+                        //   width: MediaQuery.of(context).size.width * 0.4,
+                        //   child: Row(
+                        //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        //     children: [
+                        //       Text(
+                        //         "14 days",
+                        //         overflow: TextOverflow.ellipsis,
+                        //         style: TextStyle(
+                        //           fontFamily: "Poppins",
+                        //           fontSize: 10,
+                        //         ),
+                        //       ),
+                        //       Text(
+                        //         "14 days",
+                        //         overflow: TextOverflow.ellipsis,
+                        //         style: TextStyle(
+                        //           fontFamily: "Poppins",
+                        //           fontSize: 10,
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                     SizedBox(
