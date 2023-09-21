@@ -2,7 +2,7 @@
 
 # ReUnite App
 
-This is a flutter based simple BMI Calculator app which calculated Body Mass Index..
+This is a flutter based simple ReUnite app which Lost and Found app.
 
 One of the first simple apps I created while on my journey to learn Flutter.
 
@@ -41,9 +41,8 @@ flutter run
 - UI/UX Design skills are appreciable but not mandatory
 
 
-#### Made this project with ♥ by <a href="https://github.com/jayavardhanjv">Swapnil Srivastava</a>
+#### Made this project with ♥ by <a href="https://github.com/jayavardhanjv">Jayavardhan J</a>
 
-[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://github.com/jayavardhanjv)
 
 <a href="https://github.com/jayavardhanjv" target="_blank">
 <img src=https://img.shields.io/badge/github-%2324292e.svg?&style=for-the-badge&logo=github&logoColor=white alt=github style="margin-bottom: 5px;" />
