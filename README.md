@@ -17,6 +17,8 @@ One of the first simple apps I created while on my journey to learn Flutter.
 
 2. [Flutter Launcher Icons](https://pub.dev/packages/flutter_launcher_icons)
 
+3. [Flutter Awesome Icons](https://pub.dev/packages/line_awesome_flutter)
+
 ## Setup
 
   ##### Clone the repository
